@@ -60,3 +60,128 @@
 2021.11.23  time  12:34:13 AM MSK: TEST SERVER has been created
 2021.11.23  time  12:34:13 AM MSK: TEST SERVER PORT:64748
 2021.11.23  time  12:34:13 AM MSK: TEST LOG
+2021.11.23  time  06:13:35 PM MSK: TEST SERVER has been created
+2021.11.23  time  06:13:35 PM MSK: TEST SERVER PORT:63325
+2021.11.23  time  06:13:35 PM MSK: TEST SERVER has been created
+2021.11.23  time  06:13:35 PM MSK: TEST SERVER PORT:63326
+2021.11.23  time  06:13:35 PM MSK: TEST SERVER has been created
+2021.11.23  time  06:13:35 PM MSK: TEST SERVER PORT:63327
+2021.11.23  time  06:13:35 PM MSK: Desk "TestBoard" is not used and has been removed
+2021.11.23  time  06:13:35 PM MSK: Number of desks: 0
+2021.11.23  time  06:13:35 PM MSK: TEST SERVER has been created
+2021.11.23  time  06:13:35 PM MSK: TEST SERVER PORT:63328
+2021.11.23  time  06:13:35 PM MSK: TEST SERVER has been created
+2021.11.23  time  06:13:35 PM MSK: TEST SERVER PORT:63329
+2021.11.23  time  06:13:35 PM MSK: TEST SERVER has been created
+2021.11.23  time  06:13:35 PM MSK: TEST SERVER PORT:63330
+2021.11.23  time  06:13:35 PM MSK: TEST LOG
+2021.11.23  time  06:15:16 PM MSK: SERVER has been created
+2021.11.23  time  06:15:16 PM MSK: SERVER PORT:63389
+2021.11.23  time  06:17:11 PM MSK: User d was added
+2021.11.23  time  06:17:11 PM MSK: Client (name: d) connected
+2021.11.23  time  06:17:11 PM MSK: Number of clients: 1
+2021.11.23  time  06:17:15 PM MSK: Desk "Доска 1" created
+2021.11.23  time  06:17:15 PM MSK: Number of desks: 1
+2021.11.23  time  06:18:25 PM MSK: User f was added
+2021.11.23  time  06:18:25 PM MSK: Client (name: f) connected
+2021.11.23  time  06:18:25 PM MSK: Number of clients: 2
+2021.11.23  time  06:28:26 PM MSK: Client (name: d) is unavailable
+2021.11.23  time  06:28:26 PM MSK: Number of clients: 1
+2021.11.23  time  06:28:26 PM MSK: ERROR: java.net.SocketException: Connection reset
+2021.11.23  time  06:44:10 PM MSK: TEST SERVER has been created
+2021.11.23  time  06:44:10 PM MSK: TEST SERVER PORT:56570
+2021.11.23  time  06:44:10 PM MSK: TEST SERVER has been created
+2021.11.23  time  06:44:10 PM MSK: TEST SERVER PORT:56571
+2021.11.23  time  06:44:10 PM MSK: TEST SERVER has been created
+2021.11.23  time  06:44:10 PM MSK: TEST SERVER PORT:56572
+2021.11.23  time  06:44:10 PM MSK: Desk "TestBoard" is not used and has been removed
+2021.11.23  time  06:44:10 PM MSK: Number of desks: 0
+2021.11.23  time  06:44:10 PM MSK: TEST SERVER has been created
+2021.11.23  time  06:44:10 PM MSK: TEST SERVER PORT:56573
+2021.11.23  time  06:44:10 PM MSK: TEST SERVER has been created
+2021.11.23  time  06:44:10 PM MSK: TEST SERVER PORT:56574
+2021.11.23  time  06:44:10 PM MSK: TEST SERVER has been created
+2021.11.23  time  06:44:10 PM MSK: TEST SERVER PORT:56575
+2021.11.23  time  06:44:10 PM MSK: TEST LOG
+2021.11.23  time  06:44:40 PM MSK: SERVER has been created
+2021.11.23  time  06:44:40 PM MSK: SERVER PORT:56653
+2021.11.23  time  06:44:53 PM MSK: User d was added
+2021.11.23  time  06:44:53 PM MSK: Client (name: d) connected
+2021.11.23  time  06:44:53 PM MSK: Number of clients: 1
+2021.11.23  time  06:45:19 PM MSK: User g was added
+2021.11.23  time  06:45:19 PM MSK: Client (name: g) connected
+2021.11.23  time  06:45:19 PM MSK: Number of clients: 2
+2021.11.23  time  06:45:21 PM MSK: Desk "Доска 1" created
+2021.11.23  time  06:45:21 PM MSK: Number of desks: 1
+2021.11.23  time  06:46:12 PM MSK: Client (name: g) is unavailable
+2021.11.23  time  06:46:12 PM MSK: Number of clients: 1
+2021.11.23  time  06:46:18 PM MSK: Client (name: d) is unavailable
+2021.11.23  time  06:46:18 PM MSK: Number of clients: 0
+2021.11.23  time  06:46:18 PM MSK: SERVER WAS CLOSED
+2021.11.23  time  07:42:33 PM MSK: SERVER has been created
+2021.11.23  time  07:42:33 PM MSK: SERVER PORT:65452
+2021.11.23  time  07:49:01 PM MSK: SERVER has been created
+2021.11.23  time  07:49:01 PM MSK: SERVER PORT:50537
+2021.11.23  time  07:50:00 PM MSK: User Misha was added
+2021.11.23  time  07:50:00 PM MSK: Client (name: Misha) connected
+2021.11.23  time  07:50:00 PM MSK: Number of clients: 1
+2021.11.23  time  07:50:07 PM MSK: Desk "Доска 1" created
+2021.11.23  time  07:50:07 PM MSK: Number of desks: 1
+2021.11.23  time  07:50:46 PM MSK: User gf was added
+2021.11.23  time  07:50:46 PM MSK: Client (name: gf) connected
+2021.11.23  time  07:50:46 PM MSK: Number of clients: 2
+2021.11.23  time  07:55:42 PM MSK: Client (name: Misha) is unavailable
+2021.11.23  time  07:55:42 PM MSK: Number of clients: 1
+2021.11.23  time  07:55:42 PM MSK: ERROR: java.net.SocketException: Connection reset
+2021.11.23  time  07:55:56 PM MSK: Client (name: gf) is unavailable
+2021.11.23  time  07:55:56 PM MSK: Number of clients: 0
+2021.11.23  time  07:55:56 PM MSK: SERVER WAS CLOSED
+2021.11.23  time  10:53:10 PM MSK: TEST SERVER has been created
+2021.11.23  time  10:53:10 PM MSK: TEST SERVER PORT:60400
+2021.11.23  time  10:53:10 PM MSK: TEST SERVER has been created
+2021.11.23  time  10:53:10 PM MSK: TEST SERVER PORT:60401
+2021.11.23  time  10:53:10 PM MSK: TEST SERVER has been created
+2021.11.23  time  10:53:10 PM MSK: TEST SERVER PORT:60402
+2021.11.23  time  10:53:10 PM MSK: Desk "TestBoard" is not used and has been removed
+2021.11.23  time  10:53:10 PM MSK: Number of desks: 0
+2021.11.23  time  10:53:10 PM MSK: TEST SERVER has been created
+2021.11.23  time  10:53:10 PM MSK: TEST SERVER PORT:60403
+2021.11.23  time  10:53:10 PM MSK: TEST SERVER has been created
+2021.11.23  time  10:53:10 PM MSK: TEST SERVER PORT:60404
+2021.11.23  time  10:53:10 PM MSK: TEST SERVER has been created
+2021.11.23  time  10:53:10 PM MSK: TEST SERVER PORT:60405
+2021.11.23  time  10:53:10 PM MSK: TEST LOG
+2021.11.23  time  10:53:27 PM MSK: SERVER has been created
+2021.11.23  time  10:53:27 PM MSK: SERVER PORT:60415
+2021.11.23  time  10:55:13 PM MSK: User s was added
+2021.11.23  time  10:55:13 PM MSK: User r was added
+2021.11.23  time  10:55:13 PM MSK: Client (name: s) connected
+2021.11.23  time  10:55:13 PM MSK: Number of clients: 2
+2021.11.23  time  10:55:13 PM MSK: Client (name: r) connected
+2021.11.23  time  10:55:13 PM MSK: Number of clients: 2
+2021.11.23  time  10:55:31 PM MSK: User d was added
+2021.11.23  time  10:55:31 PM MSK: Client (name: d) connected
+2021.11.23  time  10:55:31 PM MSK: Number of clients: 3
+2021.11.23  time  10:55:45 PM MSK: SERVER has been created
+2021.11.23  time  10:55:45 PM MSK: SERVER PORT:60468
+2021.11.23  time  10:55:58 PM MSK: User d was added
+2021.11.23  time  10:55:58 PM MSK: Client (name: d) connected
+2021.11.23  time  10:55:58 PM MSK: Number of clients: 1
+2021.11.23  time  10:56:01 PM MSK: Client (name: d) is unavailable
+2021.11.23  time  10:56:01 PM MSK: Number of clients: 0
+2021.11.23  time  10:56:01 PM MSK: SERVER WAS CLOSED
+2021.11.23  time  10:56:14 PM MSK: SERVER has been created
+2021.11.23  time  10:56:14 PM MSK: SERVER PORT:60488
+2021.11.23  time  10:56:22 PM MSK: User d was added
+2021.11.23  time  10:56:22 PM MSK: Client (name: d) connected
+2021.11.23  time  10:56:22 PM MSK: Number of clients: 1
+2021.11.23  time  10:56:29 PM MSK: User r was added
+2021.11.23  time  10:56:29 PM MSK: Client (name: r) connected
+2021.11.23  time  10:56:29 PM MSK: Number of clients: 2
+2021.11.23  time  10:56:34 PM MSK: Desk "Доска 1" created
+2021.11.23  time  10:56:34 PM MSK: Number of desks: 1
+2021.11.23  time  10:59:01 PM MSK: Client (name: r) is unavailable
+2021.11.23  time  10:59:01 PM MSK: Number of clients: 1
+2021.11.23  time  10:59:06 PM MSK: Client (name: d) is unavailable
+2021.11.23  time  10:59:06 PM MSK: Number of clients: 0
+2021.11.23  time  10:59:06 PM MSK: SERVER WAS CLOSED
