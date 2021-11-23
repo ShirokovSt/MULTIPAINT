@@ -14,4 +14,3 @@ mvn clean
 
 Тест модели (сервера):
 mvn clean test -Dtest=ServerTest
-123456 
