@@ -191,7 +191,7 @@ public class Server {
                                 synchronized (boards.get(boardName)) {
                                     graphics = boards.get(boardName).createGraphics();
                                 }
-                                int[] rgbArray = new int[4800000];
+                                int[] rgbArray = new int[560000];
                                 synchronized (boards.get(boardName)) {
                                     boards.get(boardName).getRGB(0, 0, 800, 700, rgbArray, 0, 800);
                                 }
