@@ -155,7 +155,7 @@ public class Client {
                         } else if (splitMessage[0].equals("CONNECT")) {
 							//Подключение к доске
                             if (splitMessage[1].equals("OK")) {
-                                int[] rgbArray = new int[4800000];
+                                int[] rgbArray = new int[560000];
                                 for (int i = 0; i < rgbArray.length; i++) {
                                     message = readSocket.readLine();
                                     rgbArray[i] = Integer.parseInt(message);
