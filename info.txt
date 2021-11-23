@@ -13,4 +13,4 @@ java -cp target\multipaint-1.0-SNAPSHOT.jar org.suai.paint.App -S
 mvn clean
 
 Тест модели (сервера):
-mvn clean test -Dtest=ServerTest
+mvn clean test -Dtest=ServerTest 
