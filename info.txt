@@ -1,7 +1,7 @@
 Сборка:
 mvn package
 
-Запуска через maven (сервер):
+Запуск через maven (сервер):
 mvn exec:java -Dexec.mainClass="org.suai.paint.App" -Dexec.args="-S"
 
 Запуск через jar-файл (сервер):
