@@ -18,13 +18,17 @@ public class Client {
     public Socket clientSocket;
     public BufferedReader readSocket;
     public BufferedWriter writeSocket;
+	public static int x;
+    public static int y;
 
     //Переменные графики
+	boolean flag = false;
 	public boolean flag1 = false;
 	public boolean flag2 = false;
 	public boolean flag3 = false;
     public JFrame frame;
     public JToolBar toolbar; // кнопки
+	public JButton menuButton;
     public JPanel menu; // меню
     public JLabel existLabel; // доска существует
     public JLabel notFoundLabel; // доска не неайдена
@@ -105,6 +109,39 @@ public class Client {
 		}
 	}
 	
+	private class MouseMoution {
+		public MouseMoution(JButton button) {
+			button.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+			if(!e.isMetaDown()){
+				x = e.getX();
+				y = e.getY();
+			}
+			}
+			});
+			button.addMouseMotionListener(new MouseMotionAdapter() {
+			public void mouseDragged(MouseEvent e) {
+			if(!e.isMetaDown()){
+			Point p = button.getLocation();
+			if (!((p.x + e.getX() - x) > 0) && ((p.y + e.getY() - y) > 600) && ((p.y + e.getY() - y) < 600)) {
+				button.setLocation(p.x + e.getX() - x,	p.y + e.getY() - y);
+			}
+			else {
+				if ((p.x + e.getX() - x) > 0) {
+					button.setLocation(0, p.y + e.getY() - y);
+				}
+				if ((p.y + e.getY() - y) > 600) {
+					button.setLocation(0, 600);
+				}
+				if ((p.y + e.getY() - y) < 40) {
+					button.setLocation(0, 40);
+				}
+			}
+			}
+		}
+	});
+	}
+	}
 	
 	//Класс считывание данных от сервера
     class NetDraw extends Thread {
@@ -112,6 +149,7 @@ public class Client {
         String[] splitMessage;
 
         public NetDraw() {
+			// JToolBar toolbar = new JToolBar("Toolbar", JToolBar.VERTICAL);
             this.start();
         }
 
@@ -144,10 +182,15 @@ public class Client {
                                 graphics.fillRect(0, 0, 800, 700);
                                 isConnected = true;
                                 frame.remove(menu);
+								frame.add(toolbar);
                                 frame.add(boardPanel);
                                 frame.repaint();
                             } else if (splitMessage[1].equals("EXISTS")) {
                                 menu.add(existLabel);
+								frame.remove(toolbar);
+								toolbar.removeAll();
+								toolbar.add(menuButton);
+								frame.add(toolbar);
                                 frame.repaint();
                             }
                         } else if (splitMessage[0].equals("CONNECT")) {
@@ -163,10 +206,16 @@ public class Client {
                                 graphics = board.createGraphics();
                                 isConnected = true;
                                 frame.remove(menu);
+								// this.sleep(1000);
                                 frame.add(boardPanel);
+								frame.add(toolbar);
                                 frame.repaint();
                             } else if (splitMessage[1].equals("NOT FOUND")) {
                                 menu.add(notFoundLabel);
+								frame.remove(toolbar);
+								toolbar.removeAll();
+								toolbar.add(menuButton);
+								frame.add(toolbar);
                                 frame.repaint();
                             }
                         } else {
@@ -326,6 +375,388 @@ public class Client {
         inviteLabel.setBounds(20, 5, 200, 30);
         menu.add(inviteLabel);
 		
+		//Панель с инструментами
+		toolbar = new JToolBar("Toolbar", JToolBar.VERTICAL);
+        toolbar.setBounds(0, 0, 40, 700); // размещение
+        toolbar.setLayout(null); // элементы размещаем сами
+        toolbar.setFloatable(false); // нельзя перетаскивать
+        toolbar.setBorderPainted(false); // без рамок
+        toolbar.setBackground(mainColor); // устанавливаем цвет панели
+		
+		//Размер 10
+        JButton size10Button = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("size10.png")));
+        size10Button.setBounds(0, 40, 40, 40);
+        size10Button.setBorderPainted(false);
+        size10Button.setBackground(Color.lightGray);
+        size10Button.setOpaque(false);
+        size10Button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                size = 10;
+				if (flag2) {
+					size = 2;
+				}
+            }
+        });	
+		//toolbar.add(size10Button);
+		new MouseMoution(size10Button);
+
+        //Размер 20
+        JButton size20Button = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("size20.png")));
+        size20Button.setBounds(0, 80, 40, 40);
+        size20Button.setBorderPainted(false);
+        size20Button.setBackground(Color.lightGray);
+        size20Button.setOpaque(false);
+        size20Button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                size = 20;
+				if (flag2) {
+					size = 4;
+				}
+            }
+        });
+		//toolbar.add(size20Button);
+		new MouseMoution(size20Button);
+		
+        //Размер 40
+        JButton size40Button = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("size40.png")));
+        size40Button.setBounds(0, 120, 40, 40);
+        size40Button.setBorderPainted(false);
+        size40Button.setBackground(Color.lightGray);
+        size40Button.setOpaque(false);
+        size40Button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                size = 40;
+				if (flag2) {
+					size = 6;
+				}
+            }
+        });
+		//toolbar.add(size40Button);
+		new MouseMoution(size40Button);
+		
+        //Размер 80
+        JButton size80Button = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("size80.png")));
+        size80Button.setBounds(0, 160, 40, 40);
+        size80Button.setBorderPainted(false);
+        size80Button.setBackground(Color.lightGray);
+        size80Button.setOpaque(false);
+        size80Button.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                size = 80;
+				if (flag2) {
+					size = 8;
+				}
+            }
+        });
+		//toolbar.add(size80Button);
+		new MouseMoution(size80Button);
+		
+        //Ластик
+        JButton EraseButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Erasor.png")));
+        EraseButton.setBounds(0, 200, 40, 40);
+        EraseButton.setBorderPainted(false);
+        EraseButton.setBackground(Color.lightGray);
+        EraseButton.setOpaque(false);
+        EraseButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				flag2 = false;
+				flag3 = false;
+				flag1 = true;
+                mainColor = Color.white;
+				Toolkit toolkit = Toolkit.getDefaultToolkit();
+				Image image = (new ImageIcon(this.getClass().getClassLoader().getResource("Erasor.png"))).getImage();
+				Point hotSpot = new Point(10,30);
+				Cursor cursor1 = toolkit.createCustomCursor(image, hotSpot, "Erasor");
+				boardPanel.setCursor(cursor1);
+				if (size < 10) {
+						if (size == 2)
+							size = 10;
+						if (size == 4)
+							size = 20;
+						if (size == 6)
+							size = 40;
+						if (size == 8)
+							size = 80;
+				}
+                //toolbar.setBackground(mainColor);
+                //menu.setBackground(mainColor);
+            }
+        });
+		//toolbar.add(EraseButton);
+		new MouseMoution(EraseButton);
+		
+        //Цвет чёрный
+        JButton blackButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("black.png")));
+        blackButton.setBounds(0, 240, 40, 40);
+        blackButton.setBorderPainted(false);
+        blackButton.setBackground(Color.lightGray);
+        blackButton.setOpaque(false);
+        blackButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if ((!flag1) && ((flag2) || (flag3))) { 
+					mainColor = Color.black;
+					//toolbar.setBackground(mainColor);
+					//menu.setBackground(mainColor);
+				}
+            }
+        });
+		//toolbar.add(blackButton);
+		new MouseMoution(blackButton);
+
+		
+        //Цвет красный
+        JButton redButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("red.png")));
+        redButton.setBounds(0, 280, 40, 40);
+        redButton.setBorderPainted(false);
+        redButton.setBackground(Color.lightGray);
+        redButton.setOpaque(false);
+        redButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if ((!flag1) && ((flag2) || (flag3))) { 
+					mainColor = Color.red;
+					//toolbar.setBackground(mainColor);
+					//menu.setBackground(mainColor);
+				}
+            }
+        });
+		//toolbar.add(redButton);
+		new MouseMoution(redButton);
+		
+        //Цвет оранжевый
+        JButton orangeButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("orange.png")));
+        orangeButton.setBounds(0, 320, 40, 40);
+        orangeButton.setBorderPainted(false);
+        orangeButton.setBackground(Color.lightGray);
+        orangeButton.setOpaque(false);
+        orangeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if ((!flag1) && ((flag2) || (flag3))) { 
+					mainColor = Color.orange;
+					//toolbar.setBackground(mainColor);
+					//menu.setBackground(mainColor);
+				}
+            }
+        });
+		//toolbar.add(orangeButton);
+		new MouseMoution(orangeButton);
+		
+        //Цвет жёлтый
+        JButton yellowButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("yellow.png")));
+        yellowButton.setBounds(0, 360, 40, 40);
+        yellowButton.setBorderPainted(false);
+        yellowButton.setBackground(Color.lightGray);
+        yellowButton.setOpaque(false);
+        yellowButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if ((!flag1) && ((flag2) || (flag3))) { 
+					mainColor = Color.yellow;
+					//toolbar.setBackground(mainColor);
+					//menu.setBackground(mainColor);
+				}
+            }
+        });
+		//toolbar.add(yellowButton);
+		new MouseMoution(yellowButton);
+		
+        //Цвет зелёный
+        JButton greenButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("green.png")));
+        greenButton.setBounds(0, 400, 40, 40);
+        greenButton.setBorderPainted(false);
+        greenButton.setBackground(Color.lightGray);
+        greenButton.setOpaque(false);
+        greenButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if ((!flag1) && ((flag2) || (flag3))) { 
+					mainColor = Color.green;
+					//toolbar.setBackground(mainColor);
+					//menu.setBackground(mainColor);
+				}
+            }
+        });
+		//toolbar.add(greenButton);
+		new MouseMoution(greenButton);
+		
+        //Цвет голубой
+        JButton cyanButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("cyan.png")));
+        cyanButton.setBounds(0, 440, 40, 40);
+        cyanButton.setBorderPainted(false);
+        cyanButton.setBackground(Color.lightGray);
+        cyanButton.setOpaque(false);
+        cyanButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if ((!flag1) && ((flag2) || (flag3))) { 
+					mainColor = Color.cyan;
+					//toolbar.setBackground(mainColor);
+					//menu.setBackground(mainColor);
+				}
+            }
+        });
+		//toolbar.add(cyanButton);
+		new MouseMoution(cyanButton);
+
+        //Цвет синий
+        JButton blueButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("blue.png")));
+        blueButton.setBounds(0, 480, 40, 40);
+        blueButton.setBorderPainted(false);
+        blueButton.setBackground(Color.lightGray);
+        blueButton.setOpaque(false);
+        blueButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if ((!flag1) && ((flag2) || (flag3))) { 
+					mainColor = Color.blue;
+					//toolbar.setBackground(mainColor);
+					//menu.setBackground(mainColor);
+				}
+            }
+        });
+		//toolbar.add(blueButton);
+		new MouseMoution(blueButton);
+
+        //Цвет фиолетовый
+        JButton magentaButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("magenta.png")));
+        magentaButton.setBounds(0, 520, 40, 40);
+        magentaButton.setBorderPainted(false);
+        magentaButton.setBackground(Color.lightGray);
+        magentaButton.setOpaque(false);
+        magentaButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if ((!flag1) && ((flag2) || (flag3))) { 
+					mainColor = Color.magenta;
+					//toolbar.setBackground(mainColor);
+					//menu.setBackground(mainColor);
+				}
+            }
+        });
+		//toolbar.add(magentaButton);
+		new MouseMoution(magentaButton);
+
+		//Визуализация кисти/карандаша
+		
+		//Карандаш
+		JButton PencilButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Pencil.png")));
+        PencilButton.setBounds(0, 560, 40, 40);
+		PencilButton.setBorderPainted(false);
+		PencilButton.setBackground(Color.lightGray);
+		PencilButton.setOpaque(false);
+        PencilButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if (!flag2) {
+					//mainColor = Color.magenta;
+					flag3 = false;
+					flag2 = true;
+					if (flag1) {
+						flag1 = false;
+						mainColor = null;
+					}
+					Toolkit toolkit = Toolkit.getDefaultToolkit();
+					Image image = (new ImageIcon(this.getClass().getClassLoader().getResource("Pencil.png"))).getImage();
+					Point hotSpot = new Point(0,30);
+					Cursor cursor2 = toolkit.createCustomCursor(image, hotSpot, "Pencil");
+					boardPanel.setCursor(cursor2);
+					if (size == 10)
+						size = 2;
+					if (size == 20)
+						size = 4;
+					if (size == 40)
+						size = 6;
+					if (size == 80)
+						size = 8;
+				}
+			}
+		 });
+		//toolbar.add(PencilButton);
+		new MouseMoution(PencilButton);
+
+		//Кисть
+		JButton BrushButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Brush.png")));
+        BrushButton.setBounds(0, 600, 40, 40);
+		BrushButton.setBorderPainted(false);
+		BrushButton.setBackground(Color.lightGray);
+		BrushButton.setOpaque(false);
+        BrushButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if (!flag3) {
+					flag2 = false;
+					flag3 = true;
+					if (flag1) {
+						flag1 = false;
+						mainColor = null;
+					}
+					//mainColor = Color.magenta;
+					Toolkit toolkit = Toolkit.getDefaultToolkit();
+					Image image = (new ImageIcon(this.getClass().getClassLoader().getResource("Brush.png"))).getImage();
+					Point hotSpot = new Point(30,0);
+					Cursor cursor3 = toolkit.createCustomCursor(image, hotSpot, "Brush");
+					boardPanel.setCursor(cursor3);
+					if (size < 10) {
+						if (size == 2)
+							size = 10;
+						if (size == 4)
+							size = 20;
+						if (size == 6)
+							size = 40;
+						if (size == 8)
+							size = 80;
+					}
+				}
+			}
+		 });
+		//toolbar.add(BrushButton);
+		new MouseMoution(BrushButton);
+		
+		//Меню
+        menuButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("menu.png")));
+        menuButton.setBounds(0, 0, 40, 40); // размещение
+        menuButton.setBorderPainted(false); // не рисовать рамку
+        menuButton.setBackground(Color.lightGray); // цвет фона (убирает градиент при наведении)
+        menuButton.setOpaque(false); // прозрачность
+        menuButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                if (isConnected) {
+                    if (frame.isAncestorOf(menu)) {
+                        frame.remove(menu);
+                        frame.add(boardPanel);
+						toolbar.add(size10Button);
+						toolbar.add(size20Button);
+						toolbar.add(size40Button);
+						toolbar.add(size80Button);
+						toolbar.add(EraseButton);
+						toolbar.add(blackButton);
+						toolbar.add(redButton);
+						toolbar.add(orangeButton);
+						toolbar.add(yellowButton);
+						toolbar.add(greenButton);
+						toolbar.add(cyanButton);
+						toolbar.add(blueButton);
+						toolbar.add(magentaButton);
+						toolbar.add(PencilButton);
+						toolbar.add(BrushButton);
+                        frame.repaint();
+                    } else {
+                        frame.remove(boardPanel);
+						toolbar.remove(size10Button);
+						toolbar.remove(size20Button);
+						toolbar.remove(size40Button);
+						toolbar.remove(size80Button);
+						toolbar.remove(EraseButton);
+						toolbar.remove(blackButton);
+						toolbar.remove(redButton);
+						toolbar.remove(orangeButton);
+						toolbar.remove(yellowButton);
+						toolbar.remove(greenButton);
+						toolbar.remove(cyanButton);
+						toolbar.remove(blueButton);
+						toolbar.remove(magentaButton);
+						toolbar.remove(PencilButton);
+						toolbar.remove(BrushButton);
+                        frame.add(menu);
+                        frame.repaint();
+                    }
+                }
+            }
+        });
+		toolbar.add(menuButton);
+		
         //Текстовое поле
         JTextField textField = new JTextField();
         textField.setBounds(20, 45, 100, 30);
@@ -345,7 +776,6 @@ public class Client {
                     frame.repaint();
                     return;
                 }
-
                 //Удаление предупреждений
                 if (menu.isAncestorOf(existLabel)) {
                     menu.remove(existLabel);
@@ -360,6 +790,22 @@ public class Client {
                     try {
                         writeSocket.write("CREATE " + nameBoard + "\n");
                         writeSocket.flush();
+						toolbar.add(size10Button);
+						toolbar.add(size20Button);
+						toolbar.add(size40Button);
+						toolbar.add(size80Button);
+						toolbar.add(EraseButton);
+						toolbar.add(blackButton);
+						toolbar.add(redButton);
+						toolbar.add(orangeButton);
+						toolbar.add(yellowButton);
+						toolbar.add(greenButton);
+						toolbar.add(cyanButton);
+						toolbar.add(blueButton);
+						toolbar.add(magentaButton);
+						toolbar.add(PencilButton);
+						toolbar.add(BrushButton);
+						frame.repaint();
                     } catch (IOException err) {
                         System.out.println(err.toString());
                         readSocket.close();
@@ -405,6 +851,22 @@ public class Client {
                     try {
                         writeSocket.write("CONNECT " + nameBoard + "\n");
                         writeSocket.flush();
+						toolbar.add(size10Button);
+						toolbar.add(size20Button);
+						toolbar.add(size40Button);
+						toolbar.add(size80Button);
+						toolbar.add(EraseButton);
+						toolbar.add(blackButton);
+						toolbar.add(redButton);
+						toolbar.add(orangeButton);
+						toolbar.add(yellowButton);
+						toolbar.add(greenButton);
+						toolbar.add(cyanButton);
+						toolbar.add(blueButton);
+						toolbar.add(magentaButton);
+						toolbar.add(PencilButton);
+						toolbar.add(BrushButton);
+						frame.repaint();
                     } catch (IOException err) {
                         System.out.println(err.toString());
                         readSocket.close();
@@ -425,345 +887,6 @@ public class Client {
         save.setBackground(Color.lightGray); // цвет фона (убирает градиент при наведении)
         save.setOpaque(true); // не_прозрачность
 		menu.add(save);
-		
-		
-        //Панель с инструментами
-        JToolBar toolbar = new JToolBar("Toolbar", JToolBar.VERTICAL);
-        toolbar.setBounds(0, 0, 40, 700); // размещение
-        toolbar.setLayout(null); // элементы размещаем сами
-        toolbar.setFloatable(false); // нельзя перетаскивать
-        toolbar.setBorderPainted(false); // без рамок
-        toolbar.setBackground(mainColor); // устанавливаем цвет панели
-		frame.add(toolbar);
-		
-        //Меню
-        JButton menuButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("menu.png")));
-        menuButton.setBounds(0, 0, 40, 40); // размещение
-        menuButton.setBorderPainted(false); // не рисовать рамку
-        menuButton.setBackground(Color.lightGray); // цвет фона (убирает градиент при наведении)
-        menuButton.setOpaque(false); // прозрачность
-        menuButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                if (isConnected) {
-                    if (frame.isAncestorOf(menu)) {
-                        frame.remove(menu);
-                        frame.add(boardPanel);
-                        frame.repaint();
-                    } else {
-                        frame.remove(boardPanel);
-                        frame.add(menu);
-                        frame.repaint();
-                    }
-                }
-            }
-        });
-		toolbar.add(menuButton);
-		
-        //Размер 10
-        JButton size4Button = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("size10.png")));
-        size4Button.setBounds(0, 40, 40, 40);
-        size4Button.setBorderPainted(false);
-        size4Button.setBackground(Color.lightGray);
-        size4Button.setOpaque(false);
-        size4Button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                size = 10;
-				if (flag2) {
-					size = 2;
-				}
-            }
-        });	
-		toolbar.add(size4Button);
-
-        //Размер 20
-        JButton size10Button = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("size20.png")));
-        size10Button.setBounds(0, 80, 40, 40);
-        size10Button.setBorderPainted(false);
-        size10Button.setBackground(Color.lightGray);
-        size10Button.setOpaque(false);
-        size10Button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                size = 20;
-				if (flag2) {
-					size = 4;
-				}
-            }
-        });
-		toolbar.add(size10Button);
-		
-        //Размер 40
-        JButton size20Button = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("size40.png")));
-        size20Button.setBounds(0, 120, 40, 40);
-        size20Button.setBorderPainted(false);
-        size20Button.setBackground(Color.lightGray);
-        size20Button.setOpaque(false);
-        size20Button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                size = 40;
-				if (flag2) {
-					size = 6;
-				}
-            }
-        });
-		toolbar.add(size20Button);
-		
-        //Размер 80
-        JButton size30Button = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("size80.png")));
-        size30Button.setBounds(0, 160, 40, 40);
-        size30Button.setBorderPainted(false);
-        size30Button.setBackground(Color.lightGray);
-        size30Button.setOpaque(false);
-        size30Button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-                size = 80;
-				if (flag2) {
-					size = 8;
-				}
-            }
-        });
-		toolbar.add(size30Button);
-		
-        //Ластик
-        JButton whiteButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Erasor.png")));
-        whiteButton.setBounds(0, 200, 40, 40);
-        whiteButton.setBorderPainted(false);
-        whiteButton.setBackground(Color.lightGray);
-        whiteButton.setOpaque(false);
-        whiteButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-				flag2 = false;
-				flag3 = false;
-				flag1 = true;
-                mainColor = Color.white;
-				Toolkit toolkit = Toolkit.getDefaultToolkit();
-				Image image = (new ImageIcon(this.getClass().getClassLoader().getResource("Erasor.png"))).getImage();
-				Point hotSpot = new Point(10,30);
-				Cursor cursor1 = toolkit.createCustomCursor(image, hotSpot, "Erasor");
-				boardPanel.setCursor(cursor1);
-				if (size < 10) {
-						if (size == 2)
-							size = 10;
-						if (size == 4)
-							size = 20;
-						if (size == 6)
-							size = 40;
-						if (size == 8)
-							size = 80;
-				}
-                //toolbar.setBackground(mainColor);
-                //menu.setBackground(mainColor);
-            }
-        });
-		toolbar.add(whiteButton);
-		
-        //Цвет чёрный
-        JButton blackButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("black.png")));
-        blackButton.setBounds(0, 240, 40, 40);
-        blackButton.setBorderPainted(false);
-        blackButton.setBackground(Color.lightGray);
-        blackButton.setOpaque(false);
-        blackButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-				if ((!flag1) && ((flag2) || (flag3))) { 
-					mainColor = Color.black;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
-				}
-            }
-        });
-		toolbar.add(blackButton);
-		
-        //Цвет красный
-        JButton redButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("red.png")));
-        redButton.setBounds(0, 280, 40, 40);
-        redButton.setBorderPainted(false);
-        redButton.setBackground(Color.lightGray);
-        redButton.setOpaque(false);
-        redButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-				if ((!flag1) && ((flag2) || (flag3))) { 
-					mainColor = Color.red;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
-				}
-            }
-        });
-		toolbar.add(redButton);
-		
-        //Цвет оранжевый
-        JButton orangeButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("orange.png")));
-        orangeButton.setBounds(0, 320, 40, 40);
-        orangeButton.setBorderPainted(false);
-        orangeButton.setBackground(Color.lightGray);
-        orangeButton.setOpaque(false);
-        orangeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-				if ((!flag1) && ((flag2) || (flag3))) { 
-					mainColor = Color.orange;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
-				}
-            }
-        });
-		toolbar.add(orangeButton);
-		
-        //Цвет жёлтый
-        JButton yellowButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("yellow.png")));
-        yellowButton.setBounds(0, 360, 40, 40);
-        yellowButton.setBorderPainted(false);
-        yellowButton.setBackground(Color.lightGray);
-        yellowButton.setOpaque(false);
-        yellowButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-				if ((!flag1) && ((flag2) || (flag3))) { 
-					mainColor = Color.yellow;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
-				}
-            }
-        });
-		toolbar.add(yellowButton);
-		
-        //Цвет зелёный
-        JButton greenButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("green.png")));
-        greenButton.setBounds(0, 400, 40, 40);
-        greenButton.setBorderPainted(false);
-        greenButton.setBackground(Color.lightGray);
-        greenButton.setOpaque(false);
-        greenButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-				if ((!flag1) && ((flag2) || (flag3))) { 
-					mainColor = Color.green;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
-				}
-            }
-        });
-		toolbar.add(greenButton);
-		
-        //Цвет голубой
-        JButton cyanButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("cyan.png")));
-        cyanButton.setBounds(0, 440, 40, 40);
-        cyanButton.setBorderPainted(false);
-        cyanButton.setBackground(Color.lightGray);
-        cyanButton.setOpaque(false);
-        cyanButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-				if ((!flag1) && ((flag2) || (flag3))) { 
-					mainColor = Color.cyan;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
-				}
-            }
-        });
-		toolbar.add(cyanButton);
-
-        //Цвет синий
-        JButton blueButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("blue.png")));
-        blueButton.setBounds(0, 480, 40, 40);
-        blueButton.setBorderPainted(false);
-        blueButton.setBackground(Color.lightGray);
-        blueButton.setOpaque(false);
-        blueButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-				if ((!flag1) && ((flag2) || (flag3))) { 
-					mainColor = Color.blue;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
-				}
-            }
-        });
-		toolbar.add(blueButton);
-
-        //Цвет фиолетовый
-        JButton magentaButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("magenta.png")));
-        magentaButton.setBounds(0, 520, 40, 40);
-        magentaButton.setBorderPainted(false);
-        magentaButton.setBackground(Color.lightGray);
-        magentaButton.setOpaque(false);
-        magentaButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-				if ((!flag1) && ((flag2) || (flag3))) { 
-					mainColor = Color.magenta;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
-				}
-            }
-        });
-		toolbar.add(magentaButton);
-
-		//Визуализация кисти/карандаша
-		
-		//Карандаш
-		JButton PencilButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Pencil.png")));
-        PencilButton.setBounds(0, 560, 40, 40);
-		PencilButton.setBorderPainted(false);
-		PencilButton.setBackground(Color.lightGray);
-		PencilButton.setOpaque(false);
-        PencilButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-				if (!flag2) {
-					//mainColor = Color.magenta;
-					flag3 = false;
-					flag2 = true;
-					if (flag1) {
-						flag1 = false;
-						mainColor = null;
-					}
-					Toolkit toolkit = Toolkit.getDefaultToolkit();
-					Image image = (new ImageIcon(this.getClass().getClassLoader().getResource("Pencil.png"))).getImage();
-					Point hotSpot = new Point(0,30);
-					Cursor cursor2 = toolkit.createCustomCursor(image, hotSpot, "Pencil");
-					boardPanel.setCursor(cursor2);
-					if (size == 10)
-						size = 2;
-					if (size == 20)
-						size = 4;
-					if (size == 40)
-						size = 6;
-					if (size == 80)
-						size = 8;
-				}
-			}
-		 });
-		toolbar.add(PencilButton);
-
-		//Кисть
-		JButton BrushButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Brush.png")));
-        BrushButton.setBounds(0, 600, 40, 40);
-		BrushButton.setBorderPainted(false);
-		BrushButton.setBackground(Color.lightGray);
-		BrushButton.setOpaque(false);
-        BrushButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent event) {
-				if (!flag3) {
-					flag2 = false;
-					flag3 = true;
-					if (flag1) {
-						flag1 = false;
-						mainColor = null;
-					}
-					//mainColor = Color.magenta;
-					Toolkit toolkit = Toolkit.getDefaultToolkit();
-					Image image = (new ImageIcon(this.getClass().getClassLoader().getResource("Brush.png"))).getImage();
-					Point hotSpot = new Point(30,0);
-					Cursor cursor3 = toolkit.createCustomCursor(image, hotSpot, "Brush");
-					boardPanel.setCursor(cursor3);
-					if (size < 10) {
-						if (size == 2)
-							size = 10;
-						if (size == 4)
-							size = 20;
-						if (size == 6)
-							size = 40;
-						if (size == 8)
-							size = 80;
-					}
-				}
-			}
-		 });
-		toolbar.add(BrushButton);
-
 		
         //Слушатели
         boardPanel.addMouseMotionListener(new MouseMotionAdapter() {
