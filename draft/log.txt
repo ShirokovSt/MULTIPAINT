@@ -1,0 +1,20 @@
+2021.11.24  time  09:39:07 AM MSK: SERVER has been created
+2021.11.24  time  09:39:07 AM MSK: SERVER PORT:58183
+2021.11.24  time  09:48:16 AM MSK: SERVER has been created
+2021.11.24  time  09:48:16 AM MSK: SERVER PORT:58451
+2021.11.24  time  09:52:03 AM MSK: User f was added
+2021.11.24  time  09:52:03 AM MSK: Client (name: f) connected
+2021.11.24  time  09:52:03 AM MSK: Number of clients: 1
+2021.11.24  time  09:52:09 AM MSK: Client (name: f) is unavailable
+2021.11.24  time  09:52:09 AM MSK: Number of clients: 0
+2021.11.24  time  09:52:09 AM MSK: SERVER WAS CLOSED
+2021.11.24  time  10:08:41 AM MSK: SERVER has been created
+2021.11.24  time  10:08:41 AM MSK: SERVER PORT:58821
+2021.11.24  time  10:08:52 AM MSK: User Vano was added
+2021.11.24  time  10:08:52 AM MSK: Client (name: Vano) connected
+2021.11.24  time  10:08:52 AM MSK: Number of clients: 1
+2021.11.24  time  10:09:01 AM MSK: Client (name: Vano) is unavailable
+2021.11.24  time  10:09:01 AM MSK: Number of clients: 0
+2021.11.24  time  10:09:01 AM MSK: SERVER WAS CLOSED
+2021.11.24  time  10:16:38 AM MSK: SERVER has been created
+2021.11.24  time  10:16:38 AM MSK: SERVER PORT:58994
