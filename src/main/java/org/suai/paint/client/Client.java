@@ -112,35 +112,39 @@ public class Client {
 	private class MouseMoution {
 		public MouseMoution(JButton button) {
 			button.addMouseListener(new MouseAdapter() {
-			public void mousePressed(MouseEvent e) {
-			if(!e.isMetaDown()){
-				x = e.getX();
-				y = e.getY();
-			}
-			}
+				public void mousePressed(MouseEvent e) {
+					if(!e.isMetaDown()){
+						x = e.getX();
+						y = e.getY();
+					}
+				}
 			});
-			button.addMouseMotionListener(new MouseMotionAdapter() {
-			public void mouseDragged(MouseEvent e) {
-			if(!e.isMetaDown()){
-			Point p = button.getLocation();
-			if (!((p.x + e.getX() - x) > 0) && ((p.y + e.getY() - y) > 600) && ((p.y + e.getY() - y) < 600)) {
-				button.setLocation(p.x + e.getX() - x,	p.y + e.getY() - y);
-			}
-			else {
-				if ((p.x + e.getX() - x) > 0) {
-					button.setLocation(0, p.y + e.getY() - y);
+			button.addMouseMotionListener(new MouseMotionAdapter() { //00
+				public void mouseDragged(MouseEvent e) {			//11
+					if(!e.isMetaDown()){								
+						Point p = button.getLocation(); //x < 0, y < 0; x > 100 (60), y > 600 (660) (00, 01, 10, 11)
+						if (((p.x + e.getX() - x) < 0) && (((p.y + e.getY() - y) < 0)))
+							button.setLocation(0, 0);
+						else if (((p.x + e.getX() - x) > 60) && (((p.y + e.getY() - y) < 0)))
+							button.setLocation(60, 0);
+						else if (((p.x + e.getX() - x) > 60) && (((p.y + e.getY() - y) > 580)))
+							button.setLocation(60, 580);
+						else if (((p.x + e.getX() - x) < 0) && (((p.y + e.getY() - y) > 580)))
+							button.setLocation(0, 580);
+						else if ((p.x + e.getX() - x) < 0)
+							button.setLocation(0, p.y + e.getY() - y);
+						else if ((p.x + e.getX() - x) > 60)
+							button.setLocation(60, p.y + e.getY() - y);
+						else if ((p.y + e.getY() - y) > 580)
+							button.setLocation(p.x + e.getX() - x, 580);
+						else if ((p.y + e.getY() - y) < 0)
+							button.setLocation(p.x + e.getX() - x, 0);
+						else
+							button.setLocation(p.x + e.getX() - x, p.y + e.getY() - y);
+					}
 				}
-				if ((p.y + e.getY() - y) > 600) {
-					button.setLocation(0, 600);
-				}
-				if ((p.y + e.getY() - y) < 40) {
-					button.setLocation(0, 40);
-				}
-			}
-			}
+			});
 		}
-	});
-	}
 	}
 	
 	//Класс считывание данных от сервера
@@ -182,15 +186,14 @@ public class Client {
                                 graphics.fillRect(0, 0, 800, 700);
                                 isConnected = true;
                                 frame.remove(menu);
+								frame.add(menuButton);
 								frame.add(toolbar);
                                 frame.add(boardPanel);
                                 frame.repaint();
                             } else if (splitMessage[1].equals("EXISTS")) {
                                 menu.add(existLabel);
+								frame.add(menuButton);
 								frame.remove(toolbar);
-								toolbar.removeAll();
-								toolbar.add(menuButton);
-								frame.add(toolbar);
                                 frame.repaint();
                             }
                         } else if (splitMessage[0].equals("CONNECT")) {
@@ -213,9 +216,7 @@ public class Client {
                             } else if (splitMessage[1].equals("NOT FOUND")) {
                                 menu.add(notFoundLabel);
 								frame.remove(toolbar);
-								toolbar.removeAll();
-								toolbar.add(menuButton);
-								frame.add(toolbar);
+								frame.add(menuButton);
                                 frame.repaint();
                             }
                         } else {
@@ -341,8 +342,8 @@ public class Client {
 		
         //Графика (окно рисования)
         frame = new JFrame("MultiPaint");
-        frame.setSize(800, 700); // размер окна
-        frame.setResizable(false); // нельзя менять размер окна
+        frame.setSize(900, 700); // размер окна
+        frame.setResizable(false); // нельзя менять размер окна 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // закрытие программы
 		frame.setLocationRelativeTo(null);
         frame.setLayout(null);
@@ -350,7 +351,7 @@ public class Client {
 
         //Панель рисования
         boardPanel = new BoardPanel();
-        boardPanel.setBounds(40, 0, 800, 700);
+        boardPanel.setBounds(100, 0, 800, 700);
         boardPanel.setOpaque(true);
        // mainColor = Color.white; // Color нынешний цвет
 
@@ -377,7 +378,7 @@ public class Client {
 		
 		//Панель с инструментами
 		toolbar = new JToolBar("Toolbar", JToolBar.VERTICAL);
-        toolbar.setBounds(0, 0, 40, 700); // размещение
+        toolbar.setBounds(0, 40, 100, 660); // размещение
         toolbar.setLayout(null); // элементы размещаем сами
         toolbar.setFloatable(false); // нельзя перетаскивать
         toolbar.setBorderPainted(false); // без рамок
@@ -385,7 +386,7 @@ public class Client {
 		
 		//Размер 10
         JButton size10Button = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("size10.png")));
-        size10Button.setBounds(0, 40, 40, 40);
+        size10Button.setBounds(0, 0, 40, 40);
         size10Button.setBorderPainted(false);
         size10Button.setBackground(Color.lightGray);
         size10Button.setOpaque(false);
@@ -397,12 +398,12 @@ public class Client {
 				}
             }
         });	
-		//toolbar.add(size10Button);
+		toolbar.add(size10Button);
 		new MouseMoution(size10Button);
 
         //Размер 20
         JButton size20Button = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("size20.png")));
-        size20Button.setBounds(0, 80, 40, 40);
+        size20Button.setBounds(0, 40, 40, 40);
         size20Button.setBorderPainted(false);
         size20Button.setBackground(Color.lightGray);
         size20Button.setOpaque(false);
@@ -414,12 +415,12 @@ public class Client {
 				}
             }
         });
-		//toolbar.add(size20Button);
+		toolbar.add(size20Button);
 		new MouseMoution(size20Button);
 		
         //Размер 40
         JButton size40Button = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("size40.png")));
-        size40Button.setBounds(0, 120, 40, 40);
+        size40Button.setBounds(0, 80, 40, 40);
         size40Button.setBorderPainted(false);
         size40Button.setBackground(Color.lightGray);
         size40Button.setOpaque(false);
@@ -431,12 +432,12 @@ public class Client {
 				}
             }
         });
-		//toolbar.add(size40Button);
+		toolbar.add(size40Button);
 		new MouseMoution(size40Button);
 		
         //Размер 80
         JButton size80Button = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("size80.png")));
-        size80Button.setBounds(0, 160, 40, 40);
+        size80Button.setBounds(0, 120, 40, 40);
         size80Button.setBorderPainted(false);
         size80Button.setBackground(Color.lightGray);
         size80Button.setOpaque(false);
@@ -448,12 +449,12 @@ public class Client {
 				}
             }
         });
-		//toolbar.add(size80Button);
+		toolbar.add(size80Button);
 		new MouseMoution(size80Button);
 		
         //Ластик
         JButton EraseButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Erasor.png")));
-        EraseButton.setBounds(0, 200, 40, 40);
+        EraseButton.setBounds(0, 160, 40, 40);
         EraseButton.setBorderPainted(false);
         EraseButton.setBackground(Color.lightGray);
         EraseButton.setOpaque(false);
@@ -482,12 +483,12 @@ public class Client {
                 //menu.setBackground(mainColor);
             }
         });
-		//toolbar.add(EraseButton);
+		toolbar.add(EraseButton);
 		new MouseMoution(EraseButton);
 		
         //Цвет чёрный
         JButton blackButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("black.png")));
-        blackButton.setBounds(0, 240, 40, 40);
+        blackButton.setBounds(0, 200, 40, 40);
         blackButton.setBorderPainted(false);
         blackButton.setBackground(Color.lightGray);
         blackButton.setOpaque(false);
@@ -500,13 +501,13 @@ public class Client {
 				}
             }
         });
-		//toolbar.add(blackButton);
+		toolbar.add(blackButton);
 		new MouseMoution(blackButton);
 
 		
         //Цвет красный
         JButton redButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("red.png")));
-        redButton.setBounds(0, 280, 40, 40);
+        redButton.setBounds(0, 240, 40, 40);
         redButton.setBorderPainted(false);
         redButton.setBackground(Color.lightGray);
         redButton.setOpaque(false);
@@ -519,12 +520,12 @@ public class Client {
 				}
             }
         });
-		//toolbar.add(redButton);
+		toolbar.add(redButton);
 		new MouseMoution(redButton);
 		
         //Цвет оранжевый
         JButton orangeButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("orange.png")));
-        orangeButton.setBounds(0, 320, 40, 40);
+        orangeButton.setBounds(0, 280, 40, 40);
         orangeButton.setBorderPainted(false);
         orangeButton.setBackground(Color.lightGray);
         orangeButton.setOpaque(false);
@@ -537,12 +538,12 @@ public class Client {
 				}
             }
         });
-		//toolbar.add(orangeButton);
+		toolbar.add(orangeButton);
 		new MouseMoution(orangeButton);
 		
         //Цвет жёлтый
         JButton yellowButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("yellow.png")));
-        yellowButton.setBounds(0, 360, 40, 40);
+        yellowButton.setBounds(0, 320, 40, 40);
         yellowButton.setBorderPainted(false);
         yellowButton.setBackground(Color.lightGray);
         yellowButton.setOpaque(false);
@@ -555,12 +556,12 @@ public class Client {
 				}
             }
         });
-		//toolbar.add(yellowButton);
+		toolbar.add(yellowButton);
 		new MouseMoution(yellowButton);
 		
         //Цвет зелёный
         JButton greenButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("green.png")));
-        greenButton.setBounds(0, 400, 40, 40);
+        greenButton.setBounds(0, 360, 40, 40);
         greenButton.setBorderPainted(false);
         greenButton.setBackground(Color.lightGray);
         greenButton.setOpaque(false);
@@ -573,12 +574,12 @@ public class Client {
 				}
             }
         });
-		//toolbar.add(greenButton);
+		toolbar.add(greenButton);
 		new MouseMoution(greenButton);
 		
         //Цвет голубой
         JButton cyanButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("cyan.png")));
-        cyanButton.setBounds(0, 440, 40, 40);
+        cyanButton.setBounds(0, 400, 40, 40);
         cyanButton.setBorderPainted(false);
         cyanButton.setBackground(Color.lightGray);
         cyanButton.setOpaque(false);
@@ -591,12 +592,12 @@ public class Client {
 				}
             }
         });
-		//toolbar.add(cyanButton);
+		toolbar.add(cyanButton);
 		new MouseMoution(cyanButton);
 
         //Цвет синий
         JButton blueButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("blue.png")));
-        blueButton.setBounds(0, 480, 40, 40);
+        blueButton.setBounds(0, 440, 40, 40);
         blueButton.setBorderPainted(false);
         blueButton.setBackground(Color.lightGray);
         blueButton.setOpaque(false);
@@ -609,12 +610,12 @@ public class Client {
 				}
             }
         });
-		//toolbar.add(blueButton);
+		toolbar.add(blueButton);
 		new MouseMoution(blueButton);
 
         //Цвет фиолетовый
         JButton magentaButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("magenta.png")));
-        magentaButton.setBounds(0, 520, 40, 40);
+        magentaButton.setBounds(0, 480, 40, 40);
         magentaButton.setBorderPainted(false);
         magentaButton.setBackground(Color.lightGray);
         magentaButton.setOpaque(false);
@@ -627,14 +628,14 @@ public class Client {
 				}
             }
         });
-		//toolbar.add(magentaButton);
+		toolbar.add(magentaButton);
 		new MouseMoution(magentaButton);
 
 		//Визуализация кисти/карандаша
 		
 		//Карандаш
 		JButton PencilButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Pencil.png")));
-        PencilButton.setBounds(0, 560, 40, 40);
+        PencilButton.setBounds(0, 520, 40, 40);
 		PencilButton.setBorderPainted(false);
 		PencilButton.setBackground(Color.lightGray);
 		PencilButton.setOpaque(false);
@@ -664,12 +665,12 @@ public class Client {
 				}
 			}
 		 });
-		//toolbar.add(PencilButton);
+		toolbar.add(PencilButton);
 		new MouseMoution(PencilButton);
 
 		//Кисть
 		JButton BrushButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Brush.png")));
-        BrushButton.setBounds(0, 600, 40, 40);
+        BrushButton.setBounds(0, 560, 40, 40);
 		BrushButton.setBorderPainted(false);
 		BrushButton.setBackground(Color.lightGray);
 		BrushButton.setOpaque(false);
@@ -701,7 +702,7 @@ public class Client {
 				}
 			}
 		 });
-		//toolbar.add(BrushButton);
+		toolbar.add(BrushButton);
 		new MouseMoution(BrushButton);
 		
 		//Меню
@@ -716,46 +717,18 @@ public class Client {
                     if (frame.isAncestorOf(menu)) {
                         frame.remove(menu);
                         frame.add(boardPanel);
-						toolbar.add(size10Button);
-						toolbar.add(size20Button);
-						toolbar.add(size40Button);
-						toolbar.add(size80Button);
-						toolbar.add(EraseButton);
-						toolbar.add(blackButton);
-						toolbar.add(redButton);
-						toolbar.add(orangeButton);
-						toolbar.add(yellowButton);
-						toolbar.add(greenButton);
-						toolbar.add(cyanButton);
-						toolbar.add(blueButton);
-						toolbar.add(magentaButton);
-						toolbar.add(PencilButton);
-						toolbar.add(BrushButton);
+						frame.add(toolbar);
                         frame.repaint();
                     } else {
                         frame.remove(boardPanel);
-						toolbar.remove(size10Button);
-						toolbar.remove(size20Button);
-						toolbar.remove(size40Button);
-						toolbar.remove(size80Button);
-						toolbar.remove(EraseButton);
-						toolbar.remove(blackButton);
-						toolbar.remove(redButton);
-						toolbar.remove(orangeButton);
-						toolbar.remove(yellowButton);
-						toolbar.remove(greenButton);
-						toolbar.remove(cyanButton);
-						toolbar.remove(blueButton);
-						toolbar.remove(magentaButton);
-						toolbar.remove(PencilButton);
-						toolbar.remove(BrushButton);
+						frame.remove(toolbar);
                         frame.add(menu);
                         frame.repaint();
                     }
                 }
             }
         });
-		toolbar.add(menuButton);
+		frame.add(menuButton);
 		
         //Текстовое поле
         JTextField textField = new JTextField();
@@ -790,21 +763,7 @@ public class Client {
                     try {
                         writeSocket.write("CREATE " + nameBoard + "\n");
                         writeSocket.flush();
-						toolbar.add(size10Button);
-						toolbar.add(size20Button);
-						toolbar.add(size40Button);
-						toolbar.add(size80Button);
-						toolbar.add(EraseButton);
-						toolbar.add(blackButton);
-						toolbar.add(redButton);
-						toolbar.add(orangeButton);
-						toolbar.add(yellowButton);
-						toolbar.add(greenButton);
-						toolbar.add(cyanButton);
-						toolbar.add(blueButton);
-						toolbar.add(magentaButton);
-						toolbar.add(PencilButton);
-						toolbar.add(BrushButton);
+						frame.add(menuButton);
 						frame.repaint();
                     } catch (IOException err) {
                         System.out.println(err.toString());
@@ -851,21 +810,7 @@ public class Client {
                     try {
                         writeSocket.write("CONNECT " + nameBoard + "\n");
                         writeSocket.flush();
-						toolbar.add(size10Button);
-						toolbar.add(size20Button);
-						toolbar.add(size40Button);
-						toolbar.add(size80Button);
-						toolbar.add(EraseButton);
-						toolbar.add(blackButton);
-						toolbar.add(redButton);
-						toolbar.add(orangeButton);
-						toolbar.add(yellowButton);
-						toolbar.add(greenButton);
-						toolbar.add(cyanButton);
-						toolbar.add(blueButton);
-						toolbar.add(magentaButton);
-						toolbar.add(PencilButton);
-						toolbar.add(BrushButton);
+						frame.add(menuButton);
 						frame.repaint();
                     } catch (IOException err) {
                         System.out.println(err.toString());
