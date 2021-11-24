@@ -12,39 +12,37 @@ import javax.swing.border.EmptyBorder;
 
 public class Client {
     //Переменные сети
-    boolean isConnected = false;
-    String serverHost = null;
-    int serverPort;
-    Socket clientSocket;
-    BufferedReader readSocket;
-    BufferedWriter writeSocket;
+    public boolean isConnected = false;
+    public String serverHost = null;
+    public int serverPort;
+    public Socket clientSocket;
+    public BufferedReader readSocket;
+    public BufferedWriter writeSocket;
 
     //Переменные графики
-	boolean flag1 = false;
-	boolean flag2 = false;
-	boolean flag3 = false;
-    JFrame frame;
-    JToolBar toolbar; // кнопки
-    JPanel menu; // меню
-    JLabel existLabel; // доска существует
-    JLabel notFoundLabel; // доска не неайдена
-    BoardPanel boardPanel; // отображение доски
-    BufferedImage board = null; // доска
-    Graphics2D graphics;
-    Color mainColor;
-    int size = 10; // размер кисти
-	String name;
+	public boolean flag1 = false;
+	public boolean flag2 = false;
+	public boolean flag3 = false;
+    public JFrame frame;
+    public JToolBar toolbar; // кнопки
+    public JPanel menu; // меню
+    public JLabel existLabel; // доска существует
+    public JLabel notFoundLabel; // доска не неайдена
+    public BoardPanel boardPanel; // отображение доски
+    public BufferedImage board = null; // доска
+    public Graphics2D graphics;
+    public Color mainColor;
+    public int size = 10; // размер кисти
+	public String name;
 	
 	//Переменные чата (граф. интерфейс)
-	JFrame frameChat;
-	JTextField messageTextFieldForChat;
-	JTextArea contentPanelChat = null;
-	JButton sendChat;
-	JScrollPane scroll;
+	public JFrame frameChat;
+	public JTextField messageTextFieldForChat;
+	public JTextArea contentPanelChat = null;
+	public JButton sendChat;
+	public JScrollPane scroll;
 	
-    class BoardPanel extends JPanel implements Serializable {
-        private static final long serialVersionUID = -109728024865681281L;
-
+    class BoardPanel extends JPanel {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.drawImage(board, 0, 0, this);
@@ -129,7 +127,7 @@ public class Client {
 							if(splitMessage[1].equals("@quit")) {
 								contentPanelChat.append("@\u0053\u0045\u0052\u0056\u0045\u0052\u003a \u0412\u044b \u043f\u043e\u043a\u0438\u043d\u0443\u043b\u0438 \u0441\u0435\u0440\u0432\u0435\u0440\u0021\n");
 								frameChat.repaint();
-								this.sleep(3000);
+								this.sleep(1000);
 								System.out.println("@SERVER: you have left the server");
 								System.exit(0);
 							}

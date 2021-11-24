@@ -110,7 +110,7 @@ public class Server {
 								if(splitMessage[1].contains("@senduser ")) {
 									String[] split = splitMessage[1].split(" ", 3);
 									ClientThread toUser = usersForChat.get(split[1]);
-									if(toUser != null) {
+									if((toUser != null) && (!split[1].equals(name))) {
 										toUser.writeSocket.write("MESSAGE @" + name + " (private): " + split[2] + "\n");
 										toUser.writeSocket.flush();
 									}
