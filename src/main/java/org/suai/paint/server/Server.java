@@ -47,7 +47,7 @@ public class Server {
         //Переменные графики
         private Color mainColor = null;
         private Graphics2D graphics = null;
-
+		
         public ClientThread(Socket clientSocket, String name) {
 			this.name = name;
             this.clientSocket = clientSocket;
@@ -107,19 +107,48 @@ public class Server {
 									writeSocket.flush();
 									break;
 								}
-								if(splitMessage[1].contains("@senduser ")) {
+								if(splitMessage[1].startsWith("@senduser ")) {
 									String[] split = splitMessage[1].split(" ", 3);
 									ClientThread toUser = usersForChat.get(split[1]);
-									if((toUser != null) && (!split[1].equals(name))) {
-										toUser.writeSocket.write("MESSAGE @" + name + " (private): " + split[2] + "\n");
+									if((toUser != null) && (!split[1].equals(name))) { //приватное сообщение: @1 (личное): сообщение
+										toUser.writeSocket.write("MESSAGE @" + name + " (\u043f\u0440\u0438\u0432\u0430\u0442\u043d\u043e\u0435): " + split[2] + "\n");
 										toUser.writeSocket.flush();
 									}
-									else {
-										writeSocket.write("MESSAGE @SERVER: This user does not exist\n");
+									else { //такой пользователь не был найден
+										writeSocket.write("MESSAGE @SERVER: \u0414\u0430\u043d\u043d\u044b\u0439 \u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\n");
 										writeSocket.flush();
 									}
-								}
-								else {
+								} else if(splitMessage[1].startsWith("@name ")) {
+									String[] split = splitMessage[1].split(" ", 2);
+									ClientThread checkNewName = usersForChat.get(split[1]);
+									if(checkNewName == null) {
+										String oldName = name;
+										name = split[1];
+										System.out.println(clientSocket.isOutputShutdown());		
+										synchronized (usersForChat) {
+											writeSocket.write("MESSAGE @name " + name + "\n");
+											writeSocket.flush();
+											checkNewName = usersForChat.remove(oldName);
+											usersForChat.put(name, checkNewName);
+										}
+										System.out.println(clientSocket.isOutputShutdown());
+										for (String to : usersForChat.keySet()) {
+											synchronized (usersForChat.get(to)) {
+												ClientThread toUser = usersForChat.get(to);
+												if(to.equals(name)) {
+													continue;
+												} else { //для всех: Пользователь @1 теперь пользователь @2
+													toUser.writeSocket.write("MESSAGE @SERVER: \u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c @" + oldName + " \u0442\u0435\u043f\u0435\u0440\u044c @" + name + "!\n");
+													toUser.writeSocket.flush();
+												}
+											}
+										}
+									} else {
+										System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&7");
+										writeSocket.write("MESSAGE @SERVER: \u0438\u043c\u044f " + split[1] + " \u0437\u0430\u043d\u044f\u0442\u043e\n");
+										writeSocket.flush();
+									}
+								} else {
 									for (String to : usersForChat.keySet()) {
 										synchronized (usersForChat.get(to)) {
 											ClientThread toUser = usersForChat.get(to);

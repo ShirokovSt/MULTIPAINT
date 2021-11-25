@@ -34,6 +34,7 @@ public class Client {
     public JLabel notFoundLabel; // доска не неайдена
 	public JLabel connectionLabel; // когда идёт присоединение к доске
 	public JLabel alreadyConnected; //если пытаешься подключиться к доске на которой ты находишься
+	public JLabel inviteLabel = null;//приглашение
     public BoardPanel boardPanel; // отображение доски
     public BufferedImage board = null; // доска
     public Graphics2D graphics;
@@ -49,6 +50,7 @@ public class Client {
 	public JButton sendChat;
 	public JScrollPane scroll;
 	
+	//Панель где всё отображается
     class BoardPanel extends JPanel {
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
@@ -56,62 +58,7 @@ public class Client {
         }
     }
 	
-	private static class Sender extends Thread { //класс отправитель
-		BufferedWriter out;
-		BufferedReader stdIn;
-		String fromClient;
-		String nameClient;
-		String message;
-		//Sost sost;
-		public Sender(BufferedWriter out, BufferedReader stdIn, String nameClient) {
-				this.out = out;
-				this.stdIn = stdIn;
-				this.nameClient = nameClient;
-				this.start();
-		}
-		@Override
-		public void run () {
-			while (true) {
-				try {
-					fromClient = stdIn.readLine();
-				} catch(Exception e) {
-					e.printStackTrace();
-				}
-				if(fromClient != null) {
-					if(fromClient.startsWith("@quit")) {
-						try {
-							out.write("MESSAGE " + fromClient + "\n");
-							out.flush();
-						} catch(Exception e) {
-							e.printStackTrace();
-						}
-						break;
-					}
-					if(fromClient.contains("@senduser ")) {
-						message = "MESSAGE " + fromClient + "\n";
-						try {
-							out.write(message);
-							out.flush();
-						} catch(Exception e) {
-							e.printStackTrace();
-						}
-					}
-					else
-					{
-						message = "MESSAGE " + fromClient + "\n";
-						try {						
-							out.write(message);
-							out.flush();
-						} catch(Exception e) {
-							e.printStackTrace();
-						}
-					}
-				}
-					
-			}
-		}
-	}
-	
+	//Класс, чтобы нельзя было элементы рисования перенести за необходимую линию
 	private class MouseMoution {
 		public MouseMoution(JButton button) {
 			button.addMouseListener(new MouseAdapter() {
@@ -122,10 +69,10 @@ public class Client {
 					}
 				}
 			});
-			button.addMouseMotionListener(new MouseMotionAdapter() { //00
-				public void mouseDragged(MouseEvent e) {			//11
+			button.addMouseMotionListener(new MouseMotionAdapter() {
+				public void mouseDragged(MouseEvent e) {			
 					if(!e.isMetaDown()){								
-						Point p = button.getLocation(); //x < 0, y < 0; x > 100 (60), y > 600 (660) (00, 01, 10, 11)
+						Point p = button.getLocation();
 						if (((p.x + e.getX() - x) < 0) && (((p.y + e.getY() - y) < 0)))
 							button.setLocation(0, 0);
 						else if (((p.x + e.getX() - x) > 60) && (((p.y + e.getY() - y) < 0)))
@@ -149,17 +96,16 @@ public class Client {
 			});
 		}
 	}
-	
-	//Класс считывание данных от сервера
-    class NetDraw extends Thread {
+
+	//Класс считывания данных с сервера
+    class Receiver extends Thread {
         String message;
         String[] splitMessage;
-
-        public NetDraw() {
-			// JToolBar toolbar = new JToolBar("Toolbar", JToolBar.VERTICAL);
+		
+        public Receiver() {
             this.start();
         }
-
+		
         public void run() {
             try {
                 try {
@@ -169,17 +115,26 @@ public class Client {
 							continue;
                         splitMessage = message.split(" ", 2);
 						if(splitMessage[0].equals("MESSAGE")) {//для чата
-							if(splitMessage[1].equals("@quit")) {
+							if(splitMessage[1].equals("@quit")) { //Информация о том, что пользователь покинул чат
 								contentPanelChat.append("@\u0053\u0045\u0052\u0056\u0045\u0052\u003a \u0412\u044b \u043f\u043e\u043a\u0438\u043d\u0443\u043b\u0438 \u0441\u0435\u0440\u0432\u0435\u0440\u0021\n");
 								frameChat.repaint();
 								this.sleep(1000);
-								System.out.println("@SERVER: you have left the server");
+								//System.out.println("@SERVER: you have left the server");
 								System.exit(0);
+							} else if(splitMessage[1].startsWith("@name ")) {
+								String[] split = splitMessage[1].split(" ", 2);
+								name = split[1]; 
+								inviteLabel.setText(name + ", \u0432\u0432\u0435\u0434\u0438\u0442\u0435 \u0438\u043c\u044f \u0434\u043e\u0441\u043a\u0438");
+								//Информация пользователю о том, что он успешно переименован
+								contentPanelChat.append("SERVER@: \u0422\u0435\u043f\u0435\u0440\u044c \u0412\u0430\u0448\u0435 \u0438\u043c\u044f @" + name + "\n");
+								frameChat.repaint();
+								frame.repaint();
+							} else {
+								String chatMessage = splitMessage[1];
+								contentPanelChat.append(chatMessage + "\n");
+								frameChat.repaint();
 							}
-							String chatMessage = splitMessage[1];
-							contentPanelChat.append(chatMessage + "\n");
-							frameChat.repaint();
-							System.out.println(chatMessage);
+							//System.out.println(chatMessage);
 						} else if (splitMessage[0].equals("CREATE")) {
 							//Созданиие доски
                             if (splitMessage[1].equals("OK")) {
@@ -205,7 +160,7 @@ public class Client {
 								
 								connectionLabel = new JLabel("\u041f\u0440\u0438\u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u0435\u0020\u043a\u0020\u0434\u043e\u0441\u043a\u0435\u0020\"" + textField.getText() + "\"...");
 								connectionLabel.setBounds(20, 85, 300, 30);
-					
+								
 								menu.add(connectionLabel);
                                 int[] rgbArray = new int[560000];
                                 for (int i = 0; i < rgbArray.length; i++) {
@@ -257,6 +212,7 @@ public class Client {
     }
 	
     public Client(String serverHost, int serverPort) {
+		//Подключение сети
         try {
             try {
                 this.serverHost = serverHost;
@@ -272,9 +228,8 @@ public class Client {
 				writeSocket.flush();
 				String fromServer = readSocket.readLine();
 				name = fromServer;
-				System.out.println("@SERVER: Your name - " + name + "\n");
-                new NetDraw();
-				new Sender(writeSocket, stdIn, name);
+				//System.out.println("@SERVER: Your name - " + name + "\n");
+                new Receiver();
             } catch (IOException err) {
                 System.out.println(err.toString());
                 readSocket.close();
@@ -286,7 +241,7 @@ public class Client {
 		
 		//Чат (граф. интерфейс)
 		//Переменные чата (граф. интерфейс)
-		frameChat = new JFrame("Chat");
+		frameChat = new JFrame("\u0427\u0430\u0442");//"Чат"
 		frameChat.setSize(400, 600);
 		frameChat.setResizable(false); // нельзя менять размер окна
         frameChat.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); //скрыть кадр, но сохранить приложение запущено.
@@ -313,13 +268,13 @@ public class Client {
         frameChat.add(scroll);
 		
 		//Кнопка для отправки
-		sendChat = new JButton("Send");
+		sendChat = new JButton("\u27a4");//Значок отправки (➤)
 		sendChat.setBounds(290, 500, 80, 50); // размещение
 		sendChat.setBorderPainted(true); // рисовать рамку
 		sendChat.setBackground(Color.lightGray); // цвет фона (убирает градиент при наведении)
 		sendChat.setOpaque(true); // не прозрачность
 		sendChat.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) { //отправка сообщений
 				String message = messageTextFieldForChat.getText();
 				messageTextFieldForChat.setText("");
 				if((message != null) && (!message.equals(" "))) {
@@ -336,10 +291,10 @@ public class Client {
 			}
 		});
 		frameChat.add(sendChat);
-		
 		contentPanelChat.append("\u0414\u043e\u0431\u0440\u043e \u043f\u043e\u0436\u0430\u043b\u043e\u0432\u0430\u0442\u044c \u0432 \u0447\u0430\u0442\u002c " + name + "!\n");
 		frameChat.repaint();
 		
+		//Код ниже позволяет отправлять сообщения с чата с помощью "Enter"
 		frameChat.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER,0),"clickButton");
 
 		frameChat.getRootPane().getActionMap().put("clickButton",new AbstractAction(){
@@ -350,6 +305,7 @@ public class Client {
 		});
 		frameChat.setVisible(false);//изначально чат не виден
 		
+		//Графический интерфейс paint
         //Графика (окно рисования)
         frame = new JFrame("MultiPaint");
         frame.setSize(900, 700); // размер окна
@@ -363,7 +319,6 @@ public class Client {
         boardPanel = new BoardPanel();
         boardPanel.setBounds(100, 0, 800, 700);
         boardPanel.setOpaque(true);
-       // mainColor = Color.white; // Color нынешний цвет
 
         //Панель меню
         menu = new JPanel();
@@ -392,7 +347,7 @@ public class Client {
 	
         //Приглашение
         //Введите имя доски UTF-16
-        JLabel inviteLabel = new JLabel( name + ", \u0432\u0432\u0435\u0434\u0438\u0442\u0435 \u0438\u043c\u044f \u0434\u043e\u0441\u043a\u0438");
+        inviteLabel = new JLabel(name + ", \u0432\u0432\u0435\u0434\u0438\u0442\u0435 \u0438\u043c\u044f \u0434\u043e\u0441\u043a\u0438");
         inviteLabel.setBounds(20, 5, 200, 30);
         menu.add(inviteLabel);
 		
@@ -499,8 +454,6 @@ public class Client {
 						if (size == 8)
 							size = 80;
 				}
-                //toolbar.setBackground(mainColor);
-                //menu.setBackground(mainColor);
             }
         });
 		toolbar.add(EraseButton);
@@ -516,8 +469,6 @@ public class Client {
             public void actionPerformed(ActionEvent event) {
 				if ((!flag1) && ((flag2) || (flag3))) { 
 					mainColor = Color.black;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
 				}
             }
         });
@@ -535,8 +486,6 @@ public class Client {
             public void actionPerformed(ActionEvent event) {
 				if ((!flag1) && ((flag2) || (flag3))) { 
 					mainColor = Color.red;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
 				}
             }
         });
@@ -553,8 +502,6 @@ public class Client {
             public void actionPerformed(ActionEvent event) {
 				if ((!flag1) && ((flag2) || (flag3))) { 
 					mainColor = Color.orange;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
 				}
             }
         });
@@ -571,8 +518,6 @@ public class Client {
             public void actionPerformed(ActionEvent event) {
 				if ((!flag1) && ((flag2) || (flag3))) { 
 					mainColor = Color.yellow;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
 				}
             }
         });
@@ -589,8 +534,6 @@ public class Client {
             public void actionPerformed(ActionEvent event) {
 				if ((!flag1) && ((flag2) || (flag3))) { 
 					mainColor = Color.green;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
 				}
             }
         });
@@ -607,8 +550,6 @@ public class Client {
             public void actionPerformed(ActionEvent event) {
 				if ((!flag1) && ((flag2) || (flag3))) { 
 					mainColor = Color.cyan;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
 				}
             }
         });
@@ -625,8 +566,6 @@ public class Client {
             public void actionPerformed(ActionEvent event) {
 				if ((!flag1) && ((flag2) || (flag3))) { 
 					mainColor = Color.blue;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
 				}
             }
         });
@@ -643,8 +582,6 @@ public class Client {
             public void actionPerformed(ActionEvent event) {
 				if ((!flag1) && ((flag2) || (flag3))) { 
 					mainColor = Color.magenta;
-					//toolbar.setBackground(mainColor);
-					//menu.setBackground(mainColor);
 				}
             }
         });
@@ -652,7 +589,6 @@ public class Client {
 		new MouseMoution(magentaButton);
 
 		//Визуализация кисти/карандаша
-		
 		//Карандаш
 		JButton PencilButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Pencil.png")));
         PencilButton.setBounds(0, 520, 40, 40);
@@ -759,7 +695,7 @@ public class Client {
         createBoard.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 String nameBoard = textField.getText();
-                //Нет имени доски
+                //Если нет имени доски
                 if (nameBoard.equals("")) {
                     frame.repaint();
                     return;
@@ -795,9 +731,8 @@ public class Client {
         });
         menu.add(createBoard);
 
-		//Открыть/скрыть чат
-		//String string = new String("\u0427\u0430\u0442");//"Чат"
-        JButton chatButton = new JButton("\u0427\u0430\u0442");
+		//Кнопка Открыть/скрыть чат
+        JButton chatButton = new JButton("\u0427\u0430\u0442");//"Чат"
         chatButton.setBounds(335, 80, 210, 40); // размещение
         chatButton.setBorderPainted(true); // рисовать рамку
         chatButton.setBackground(Color.lightGray); // цвет фона (убирает градиент при наведении)
@@ -823,7 +758,7 @@ public class Client {
         joinBoard.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
                 String nameBoard = textField.getText();
-                //Нет имени доски
+                //Если нет имени доски
                 if (nameBoard.equals("")) {
                     System.out.println();
                     frame.repaint();
@@ -863,7 +798,7 @@ public class Client {
         });
         menu.add(joinBoard);
 		
-		//сохранение доски
+		//Сохранение доски
 		JButton save = new JButton("\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0434\u043e\u0441\u043a\u0443");
 		save.addActionListener(e -> save(boardPanel));
 		save.setBounds(545, 40, 210, 40); // размещение
@@ -872,7 +807,7 @@ public class Client {
         save.setOpaque(true); // не_прозрачность
 		menu.add(save);
 		
-        //Слушатели
+        //Рисование мышью
         boardPanel.addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseDragged(MouseEvent e) {
                 try {
@@ -916,7 +851,7 @@ public class Client {
             }
         });
     }
-		
+	//сохранение доски
 	private void save(JPanel panel) {
 		BufferedImage img = new BufferedImage(panel.getWidth(), panel.getHeight(), BufferedImage.TYPE_INT_RGB);
 		panel.print(img.getGraphics());
