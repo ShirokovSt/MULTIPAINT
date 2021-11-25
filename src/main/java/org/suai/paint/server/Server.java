@@ -123,15 +123,14 @@ public class Server {
 									ClientThread checkNewName = usersForChat.get(split[1]);
 									if(checkNewName == null) {
 										String oldName = name;
-										name = split[1];
-										System.out.println(clientSocket.isOutputShutdown());		
+										name = split[1];	
 										synchronized (usersForChat) {
 											writeSocket.write("MESSAGE @name " + name + "\n");
 											writeSocket.flush();
+											logger.toLog("Client \"" + oldName + "\" now \"" + name + "\" ");
 											checkNewName = usersForChat.remove(oldName);
 											usersForChat.put(name, checkNewName);
 										}
-										System.out.println(clientSocket.isOutputShutdown());
 										for (String to : usersForChat.keySet()) {
 											synchronized (usersForChat.get(to)) {
 												ClientThread toUser = usersForChat.get(to);
@@ -144,7 +143,6 @@ public class Server {
 											}
 										}
 									} else {
-										System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&7");
 										writeSocket.write("MESSAGE @SERVER: \u0438\u043c\u044f " + split[1] + " \u0437\u0430\u043d\u044f\u0442\u043e\n");
 										writeSocket.flush();
 									}

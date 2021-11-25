@@ -126,7 +126,7 @@ public class Client {
 								name = split[1]; 
 								inviteLabel.setText(name + ", \u0432\u0432\u0435\u0434\u0438\u0442\u0435 \u0438\u043c\u044f \u0434\u043e\u0441\u043a\u0438");
 								//Информация пользователю о том, что он успешно переименован
-								contentPanelChat.append("SERVER@: \u0422\u0435\u043f\u0435\u0440\u044c \u0412\u0430\u0448\u0435 \u0438\u043c\u044f @" + name + "\n");
+								contentPanelChat.append("@SERVER: \u0422\u0435\u043f\u0435\u0440\u044c \u0412\u0430\u0448\u0435 \u0438\u043c\u044f @" + name + "\n");
 								frameChat.repaint();
 								frame.repaint();
 							} else {
@@ -221,8 +221,7 @@ public class Client {
                 readSocket = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 writeSocket = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
 				BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-				System.out.println("Get name, example: @name Vanya\nYour name: ");
-				
+				System.out.println("Get name, example: \"@name Vanya\" or just \"Vanya\"\nYour name: ");
 				name = stdIn.readLine();				
 				writeSocket.write(name + "\n");
 				writeSocket.flush();
@@ -359,6 +358,44 @@ public class Client {
         toolbar.setBorderPainted(false); // без рамок
         toolbar.setBackground(mainColor); // устанавливаем цвет панели
 		
+		//Палитра 
+		JFrame paletteFrame = new JFrame();
+		paletteFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+		paletteFrame.setSize(500, 400);
+		paletteFrame.setVisible(false);
+		
+		JColorChooser paletteChooser = new JColorChooser();
+		paletteFrame.add(paletteChooser, BorderLayout.CENTER);
+		
+		JButton colorChooseButton = new JButton("\u0412\u044b\u0431\u0440\u0430\u0442\u044c \u0446\u0432\u0435\u0442"); //кнопка выбрать цвет
+		colorChooseButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if(flag1) {
+					mainColor = Color.white;
+				} else 
+					mainColor = paletteChooser.getColor();
+				paletteFrame.setVisible(false);
+            }
+        });
+		paletteFrame.add(colorChooseButton, BorderLayout.SOUTH);	
+		
+        JButton palette = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("palette.png")));
+        palette.setBounds(45, 0, 40, 40);
+        palette.setBorderPainted(false);
+        palette.setBackground(Color.lightGray);
+        palette.setOpaque(false);
+        palette.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+					if(paletteFrame.isVisible())
+						paletteFrame.setVisible(false);
+					else
+						paletteFrame.setVisible(true);
+            }
+        });
+		toolbar.add(palette);
+		new MouseMoution(palette);
+		
+		
 		//Размер 10
         JButton size10Button = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("size10.png")));
         size10Button.setBounds(0, 0, 40, 40);
@@ -429,7 +466,7 @@ public class Client {
 		
         //Ластик
         JButton EraseButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Erasor.png")));
-        EraseButton.setBounds(0, 160, 40, 40);
+        EraseButton.setBounds(45, 40, 40, 40);
         EraseButton.setBorderPainted(false);
         EraseButton.setBackground(Color.lightGray);
         EraseButton.setOpaque(false);
@@ -526,7 +563,7 @@ public class Client {
 		
         //Цвет зелёный
         JButton greenButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("green.png")));
-        greenButton.setBounds(0, 360, 40, 40);
+        greenButton.setBounds(45, 200, 40, 40);
         greenButton.setBorderPainted(false);
         greenButton.setBackground(Color.lightGray);
         greenButton.setOpaque(false);
@@ -542,7 +579,7 @@ public class Client {
 		
         //Цвет голубой
         JButton cyanButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("cyan.png")));
-        cyanButton.setBounds(0, 400, 40, 40);
+        cyanButton.setBounds(45, 240, 40, 40);
         cyanButton.setBorderPainted(false);
         cyanButton.setBackground(Color.lightGray);
         cyanButton.setOpaque(false);
@@ -558,7 +595,7 @@ public class Client {
 
         //Цвет синий
         JButton blueButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("blue.png")));
-        blueButton.setBounds(0, 440, 40, 40);
+        blueButton.setBounds(45, 280, 40, 40);
         blueButton.setBorderPainted(false);
         blueButton.setBackground(Color.lightGray);
         blueButton.setOpaque(false);
@@ -574,7 +611,7 @@ public class Client {
 
         //Цвет фиолетовый
         JButton magentaButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("magenta.png")));
-        magentaButton.setBounds(0, 480, 40, 40);
+        magentaButton.setBounds(45, 320, 40, 40);
         magentaButton.setBorderPainted(false);
         magentaButton.setBackground(Color.lightGray);
         magentaButton.setOpaque(false);
@@ -587,11 +624,75 @@ public class Client {
         });
 		toolbar.add(magentaButton);
 		new MouseMoution(magentaButton);
-
+		
+		//Цвет розовый
+		JButton pink = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("pink.png")));
+        pink.setBounds(45, 360, 40, 40);
+        pink.setBorderPainted(false);
+        pink.setBackground(Color.lightGray);
+        pink.setOpaque(false);
+        pink.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if ((!flag1) && ((flag2) || (flag3))) { 
+					mainColor = Color.pink;
+				}
+            }
+        });
+		toolbar.add(pink);
+		new MouseMoution(pink);
+		
+		//Цвет серый
+		JButton gray = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("gray.png")));
+        gray.setBounds(0, 360, 40, 40);
+        gray.setBorderPainted(false);
+        gray.setBackground(Color.lightGray);
+        gray.setOpaque(false);
+        gray.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if ((!flag1) && ((flag2) || (flag3))) { 
+					mainColor = new Color(195, 195, 195);
+				}
+            }
+        });
+		toolbar.add(gray);
+		new MouseMoution(gray);
+		
+		//Цвет коричневый
+		JButton brown = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("brown.png")));
+        brown.setBounds(0, 400, 40, 40);
+        brown.setBorderPainted(false);
+        brown.setBackground(Color.lightGray);
+        brown.setOpaque(false);
+        brown.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if ((!flag1) && ((flag2) || (flag3))) { 
+					mainColor = new Color(185, 122, 87);
+				}
+            }
+        });
+		toolbar.add(brown);
+		new MouseMoution(brown);
+		
+		//Цвет сиреневый
+		JButton lilac = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("lilac.png")));
+        lilac.setBounds(45, 400, 40, 40);
+        lilac.setBorderPainted(false);
+        lilac.setBackground(Color.lightGray);
+        lilac.setOpaque(false);
+        lilac.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if ((!flag1) && ((flag2) || (flag3))) { 
+					mainColor = new Color(200, 191, 231);
+				}
+            }
+        });
+		toolbar.add(lilac);
+		new MouseMoution(lilac);
+		
 		//Визуализация кисти/карандаша
 		//Карандаш
 		JButton PencilButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Pencil.png")));
-        PencilButton.setBounds(0, 520, 40, 40);
+        PencilButton.setBounds(45, 80, 40, 40);
 		PencilButton.setBorderPainted(false);
 		PencilButton.setBackground(Color.lightGray);
 		PencilButton.setOpaque(false);
@@ -626,7 +727,7 @@ public class Client {
 
 		//Кисть
 		JButton BrushButton = new JButton(new ImageIcon(this.getClass().getClassLoader().getResource("Brush.png")));
-        BrushButton.setBounds(0, 560, 40, 40);
+        BrushButton.setBounds(45, 120, 40, 40);
 		BrushButton.setBorderPainted(false);
 		BrushButton.setBackground(Color.lightGray);
 		BrushButton.setOpaque(false);

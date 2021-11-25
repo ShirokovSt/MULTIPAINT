@@ -1975,3 +1975,212 @@
 2021.11.25  time  06:46:22 PM MSK: Client (name: Бодя) is unavailable
 2021.11.25  time  06:46:22 PM MSK: Number of clients: 0
 2021.11.25  time  06:46:22 PM MSK: SERVER WAS CLOSED
+2021.11.25  time  06:58:31 PM MSK: TEST SERVER has been created
+2021.11.25  time  06:58:31 PM MSK: TEST SERVER PORT:50116
+2021.11.25  time  06:58:31 PM MSK: TEST SERVER has been created
+2021.11.25  time  06:58:31 PM MSK: TEST SERVER PORT:50117
+2021.11.25  time  06:58:31 PM MSK: TEST SERVER has been created
+2021.11.25  time  06:58:31 PM MSK: TEST SERVER PORT:50118
+2021.11.25  time  06:58:31 PM MSK: Desk "TestBoard" is not used and has been removed
+2021.11.25  time  06:58:31 PM MSK: Number of desks: 0
+2021.11.25  time  06:58:31 PM MSK: TEST SERVER has been created
+2021.11.25  time  06:58:31 PM MSK: TEST SERVER PORT:50119
+2021.11.25  time  06:58:31 PM MSK: TEST SERVER has been created
+2021.11.25  time  06:58:31 PM MSK: TEST SERVER PORT:50120
+2021.11.25  time  06:58:31 PM MSK: TEST SERVER has been created
+2021.11.25  time  06:58:31 PM MSK: TEST SERVER PORT:50121
+2021.11.25  time  06:58:31 PM MSK: TEST LOG
+2021.11.25  time  06:58:36 PM MSK: SERVER has been created
+2021.11.25  time  06:58:36 PM MSK: SERVER PORT:50122
+2021.11.25  time  06:58:54 PM MSK: User Vano was added
+2021.11.25  time  06:58:54 PM MSK: Client (name: Vano) connected
+2021.11.25  time  06:58:54 PM MSK: Number of clients: 1
+2021.11.25  time  06:59:23 PM MSK: User USER0 was added
+2021.11.25  time  06:59:23 PM MSK: Client (name: USER0) connected
+2021.11.25  time  06:59:23 PM MSK: Number of clients: 2
+2021.11.25  time  08:11:12 PM MSK: Client (name: Vano) is unavailable
+2021.11.25  time  08:11:12 PM MSK: Number of clients: 1
+2021.11.25  time  08:11:18 PM MSK: Desk "Доска 1" created
+2021.11.25  time  08:11:18 PM MSK: Number of desks: 1
+2021.11.25  time  08:11:55 PM MSK: Client (name: Bodya) is unavailable
+2021.11.25  time  08:11:55 PM MSK: Number of clients: 0
+2021.11.25  time  08:11:55 PM MSK: SERVER WAS CLOSED
+2021.11.25  time  08:16:14 PM MSK: TEST SERVER has been created
+2021.11.25  time  08:16:14 PM MSK: TEST SERVER PORT:56169
+2021.11.25  time  08:16:14 PM MSK: TEST SERVER has been created
+2021.11.25  time  08:16:14 PM MSK: TEST SERVER PORT:56170
+2021.11.25  time  08:16:14 PM MSK: TEST SERVER has been created
+2021.11.25  time  08:16:14 PM MSK: TEST SERVER PORT:56171
+2021.11.25  time  08:16:14 PM MSK: Desk "TestBoard" is not used and has been removed
+2021.11.25  time  08:16:14 PM MSK: Number of desks: 0
+2021.11.25  time  08:16:14 PM MSK: TEST SERVER has been created
+2021.11.25  time  08:16:14 PM MSK: TEST SERVER PORT:56172
+2021.11.25  time  08:16:14 PM MSK: TEST SERVER has been created
+2021.11.25  time  08:16:14 PM MSK: TEST SERVER PORT:56173
+2021.11.25  time  08:16:14 PM MSK: TEST SERVER has been created
+2021.11.25  time  08:16:14 PM MSK: TEST SERVER PORT:56174
+2021.11.25  time  08:16:14 PM MSK: TEST LOG
+2021.11.25  time  08:16:21 PM MSK: SERVER has been created
+2021.11.25  time  08:16:21 PM MSK: SERVER PORT:56175
+2021.11.25  time  08:16:44 PM MSK: User Vano was added
+2021.11.25  time  08:16:44 PM MSK: Client (name: Vano) connected
+2021.11.25  time  08:16:44 PM MSK: Number of clients: 1
+2021.11.25  time  08:17:18 PM MSK: User USER0 was added
+2021.11.25  time  08:17:18 PM MSK: Client (name: USER0) connected
+2021.11.25  time  08:17:18 PM MSK: Number of clients: 2
+2021.11.25  time  08:17:41 PM MSK: Client "USER0" now "Ванёк" 
+2021.11.25  time  08:18:22 PM MSK: Client "Vano" now "git" 
+2021.11.25  time  08:19:27 PM MSK: Client "git" now "" 
+2021.11.25  time  08:19:46 PM MSK: Client (name: ) is unavailable
+2021.11.25  time  08:19:46 PM MSK: Number of clients: 1
+2021.11.25  time  08:19:52 PM MSK: Client (name: Ванёк) is unavailable
+2021.11.25  time  08:19:52 PM MSK: Number of clients: 0
+2021.11.25  time  08:19:52 PM MSK: SERVER WAS CLOSED
+2021.11.25  time  08:26:13 PM MSK: TEST SERVER has been created
+2021.11.25  time  08:26:13 PM MSK: TEST SERVER PORT:64750
+2021.11.25  time  08:26:13 PM MSK: TEST SERVER has been created
+2021.11.25  time  08:26:13 PM MSK: TEST SERVER PORT:64751
+2021.11.25  time  08:26:13 PM MSK: TEST SERVER has been created
+2021.11.25  time  08:26:13 PM MSK: TEST SERVER PORT:64752
+2021.11.25  time  08:26:13 PM MSK: Desk "TestBoard" is not used and has been removed
+2021.11.25  time  08:26:13 PM MSK: Number of desks: 0
+2021.11.25  time  08:26:13 PM MSK: TEST SERVER has been created
+2021.11.25  time  08:26:13 PM MSK: TEST SERVER PORT:64753
+2021.11.25  time  08:26:13 PM MSK: TEST SERVER has been created
+2021.11.25  time  08:26:13 PM MSK: TEST SERVER PORT:64754
+2021.11.25  time  08:26:13 PM MSK: TEST SERVER has been created
+2021.11.25  time  08:26:13 PM MSK: TEST SERVER PORT:64755
+2021.11.25  time  08:26:13 PM MSK: TEST LOG
+2021.11.25  time  08:26:19 PM MSK: SERVER has been created
+2021.11.25  time  08:26:19 PM MSK: SERVER PORT:64756
+2021.11.25  time  08:26:33 PM MSK: User Vano was added
+2021.11.25  time  08:26:33 PM MSK: Client (name: Vano) connected
+2021.11.25  time  08:26:33 PM MSK: Number of clients: 1
+2021.11.25  time  08:26:37 PM MSK: Desk "Доска 1" created
+2021.11.25  time  08:26:37 PM MSK: Number of desks: 1
+2021.11.25  time  09:16:22 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:16:22 PM MSK: TEST SERVER PORT:55084
+2021.11.25  time  09:16:22 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:16:22 PM MSK: TEST SERVER PORT:55085
+2021.11.25  time  09:16:23 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:16:23 PM MSK: TEST SERVER PORT:55086
+2021.11.25  time  09:16:23 PM MSK: Desk "TestBoard" is not used and has been removed
+2021.11.25  time  09:16:23 PM MSK: Number of desks: 0
+2021.11.25  time  09:16:23 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:16:23 PM MSK: TEST SERVER PORT:55087
+2021.11.25  time  09:16:23 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:16:23 PM MSK: TEST SERVER PORT:55088
+2021.11.25  time  09:16:23 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:16:23 PM MSK: TEST SERVER PORT:55089
+2021.11.25  time  09:16:23 PM MSK: TEST LOG
+2021.11.25  time  09:16:30 PM MSK: SERVER has been created
+2021.11.25  time  09:16:30 PM MSK: SERVER PORT:55092
+2021.11.25  time  09:16:47 PM MSK: User Vano was added
+2021.11.25  time  09:16:47 PM MSK: Client (name: Vano) connected
+2021.11.25  time  09:16:47 PM MSK: Number of clients: 1
+2021.11.25  time  09:16:51 PM MSK: Desk "Доска 1" created
+2021.11.25  time  09:16:51 PM MSK: Number of desks: 1
+2021.11.25  time  09:18:17 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:18:17 PM MSK: TEST SERVER PORT:63374
+2021.11.25  time  09:18:17 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:18:17 PM MSK: TEST SERVER PORT:63375
+2021.11.25  time  09:18:17 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:18:17 PM MSK: TEST SERVER PORT:63376
+2021.11.25  time  09:18:17 PM MSK: Desk "TestBoard" is not used and has been removed
+2021.11.25  time  09:18:17 PM MSK: Number of desks: 0
+2021.11.25  time  09:18:17 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:18:17 PM MSK: TEST SERVER PORT:63377
+2021.11.25  time  09:18:17 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:18:17 PM MSK: TEST SERVER PORT:63378
+2021.11.25  time  09:18:17 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:18:17 PM MSK: TEST SERVER PORT:63379
+2021.11.25  time  09:18:17 PM MSK: TEST LOG
+2021.11.25  time  09:18:28 PM MSK: SERVER has been created
+2021.11.25  time  09:18:28 PM MSK: SERVER PORT:63174
+2021.11.25  time  09:18:32 PM MSK: Client (name: Vano) is unavailable
+2021.11.25  time  09:18:32 PM MSK: Number of clients: 0
+2021.11.25  time  09:18:32 PM MSK: SERVER WAS CLOSED
+2021.11.25  time  09:18:46 PM MSK: User Vano was added
+2021.11.25  time  09:18:46 PM MSK: Client (name: Vano) connected
+2021.11.25  time  09:18:46 PM MSK: Number of clients: 1
+2021.11.25  time  09:18:48 PM MSK: Desk "Доска 1" created
+2021.11.25  time  09:18:48 PM MSK: Number of desks: 1
+2021.11.25  time  09:34:36 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:34:36 PM MSK: TEST SERVER PORT:61263
+2021.11.25  time  09:34:36 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:34:36 PM MSK: TEST SERVER PORT:61264
+2021.11.25  time  09:34:36 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:34:36 PM MSK: TEST SERVER PORT:61265
+2021.11.25  time  09:34:36 PM MSK: Desk "TestBoard" is not used and has been removed
+2021.11.25  time  09:34:36 PM MSK: Number of desks: 0
+2021.11.25  time  09:34:36 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:34:36 PM MSK: TEST SERVER PORT:61266
+2021.11.25  time  09:34:36 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:34:36 PM MSK: TEST SERVER PORT:61267
+2021.11.25  time  09:34:36 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:34:36 PM MSK: TEST SERVER PORT:61268
+2021.11.25  time  09:34:36 PM MSK: TEST LOG
+2021.11.25  time  09:34:42 PM MSK: SERVER has been created
+2021.11.25  time  09:34:42 PM MSK: SERVER PORT:61269
+2021.11.25  time  09:34:48 PM MSK: SERVER has been created
+2021.11.25  time  09:34:48 PM MSK: SERVER PORT:61270
+2021.11.25  time  09:35:05 PM MSK: User Vano was added
+2021.11.25  time  09:35:05 PM MSK: Client (name: Vano) connected
+2021.11.25  time  09:35:05 PM MSK: Number of clients: 1
+2021.11.25  time  09:35:07 PM MSK: Desk "Доска 1" created
+2021.11.25  time  09:35:07 PM MSK: Number of desks: 1
+2021.11.25  time  09:36:00 PM MSK: Client (name: Vano) is unavailable
+2021.11.25  time  09:36:00 PM MSK: Number of clients: 0
+2021.11.25  time  09:36:00 PM MSK: SERVER WAS CLOSED
+2021.11.25  time  09:36:26 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:36:26 PM MSK: TEST SERVER PORT:61309
+2021.11.25  time  09:36:26 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:36:26 PM MSK: TEST SERVER PORT:61310
+2021.11.25  time  09:36:26 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:36:26 PM MSK: TEST SERVER PORT:61311
+2021.11.25  time  09:36:26 PM MSK: Desk "TestBoard" is not used and has been removed
+2021.11.25  time  09:36:26 PM MSK: Number of desks: 0
+2021.11.25  time  09:36:26 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:36:26 PM MSK: TEST SERVER PORT:61312
+2021.11.25  time  09:36:26 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:36:26 PM MSK: TEST SERVER PORT:61313
+2021.11.25  time  09:36:26 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:36:26 PM MSK: TEST SERVER PORT:61314
+2021.11.25  time  09:36:26 PM MSK: TEST LOG
+2021.11.25  time  09:36:52 PM MSK: SERVER has been created
+2021.11.25  time  09:36:52 PM MSK: SERVER PORT:61315
+2021.11.25  time  09:37:11 PM MSK: User Tanya was added
+2021.11.25  time  09:37:11 PM MSK: Client (name: Tanya) connected
+2021.11.25  time  09:37:11 PM MSK: Number of clients: 1
+2021.11.25  time  09:37:34 PM MSK: Desk "Доска 1" created
+2021.11.25  time  09:37:34 PM MSK: Number of desks: 1
+2021.11.25  time  09:38:45 PM MSK: Client "Tanya" now "Stas" 
+2021.11.25  time  09:42:37 PM MSK: Client (name: Stas) is unavailable
+2021.11.25  time  09:42:37 PM MSK: Number of clients: 0
+2021.11.25  time  09:42:37 PM MSK: SERVER WAS CLOSED
+2021.11.25  time  09:43:14 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:43:14 PM MSK: TEST SERVER PORT:56564
+2021.11.25  time  09:43:14 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:43:14 PM MSK: TEST SERVER PORT:56565
+2021.11.25  time  09:43:14 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:43:14 PM MSK: TEST SERVER PORT:56566
+2021.11.25  time  09:43:14 PM MSK: Desk "TestBoard" is not used and has been removed
+2021.11.25  time  09:43:14 PM MSK: Number of desks: 0
+2021.11.25  time  09:43:14 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:43:14 PM MSK: TEST SERVER PORT:56567
+2021.11.25  time  09:43:14 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:43:14 PM MSK: TEST SERVER PORT:56568
+2021.11.25  time  09:43:14 PM MSK: TEST SERVER has been created
+2021.11.25  time  09:43:14 PM MSK: TEST SERVER PORT:56569
+2021.11.25  time  09:43:14 PM MSK: TEST LOG
+2021.11.25  time  09:43:28 PM MSK: SERVER has been created
+2021.11.25  time  09:43:28 PM MSK: SERVER PORT:63310
+2021.11.25  time  09:43:44 PM MSK: User dsdf was added
+2021.11.25  time  09:43:44 PM MSK: Client (name: dsdf) connected
+2021.11.25  time  09:43:44 PM MSK: Number of clients: 1
+2021.11.25  time  09:43:46 PM MSK: Desk "Доска 1" created
+2021.11.25  time  09:43:46 PM MSK: Number of desks: 1
+2021.11.25  time  09:44:59 PM MSK: Client "dsdf" now "Таня" 
+2021.11.25  time  09:45:09 PM MSK: Client (name: Таня) is unavailable
+2021.11.25  time  09:45:09 PM MSK: Number of clients: 0
+2021.11.25  time  09:45:09 PM MSK: SERVER WAS CLOSED
