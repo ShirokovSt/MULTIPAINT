@@ -110,7 +110,7 @@ public class Server {
 								if(splitMessage[1].contains("@senduser ")) {
 									String[] split = splitMessage[1].split(" ", 3);
 									ClientThread toUser = usersForChat.get(split[1]);
-									if(toUser != null) {
+									if((toUser != null) && (!split[1].equals(name))) {
 										toUser.writeSocket.write("MESSAGE @" + name + " (private): " + split[2] + "\n");
 										toUser.writeSocket.flush();
 									}
@@ -150,7 +150,7 @@ public class Server {
                                     writeSocket.flush();
                                 }
                                 String boardNameOld = boardName;
-
+								
                                 boardName = splitMessage[1];
                                 synchronized (boards) {
                                     boards.put(boardName, new BufferedImage(800, 700, BufferedImage.TYPE_INT_RGB));
@@ -181,12 +181,20 @@ public class Server {
                                 isContains = boards.containsKey(splitMessage[1]);
                             }
                             if (isContains) {
-                                synchronized (this) {
+                          
+								if(splitMessage[1].equals(boardName))
+									synchronized (this) {
+										writeSocket.write("CONNECT THIS\n"); //уже подключены
+										writeSocket.flush();
+										continue;
+									}
+								
+								synchronized (this) {
                                     writeSocket.write("CONNECT OK\n");
                                     writeSocket.flush();
                                 }
-                                String boardNameOld = boardName;
-
+								
+								String boardNameOld = boardName;
                                 boardName = splitMessage[1];
                                 synchronized (boards.get(boardName)) {
                                     graphics = boards.get(boardName).createGraphics();

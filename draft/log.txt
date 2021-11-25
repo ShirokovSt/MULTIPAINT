@@ -18,3 +18,155 @@
 2021.11.24  time  10:09:01 AM MSK: SERVER WAS CLOSED
 2021.11.24  time  10:16:38 AM MSK: SERVER has been created
 2021.11.24  time  10:16:38 AM MSK: SERVER PORT:58994
+2021.11.25  time  11:22:24 AM MSK: SERVER has been created
+2021.11.25  time  11:22:24 AM MSK: SERVER PORT:50564
+2021.11.25  time  11:22:41 AM MSK: User Vano was added
+2021.11.25  time  11:22:41 AM MSK: Client (name: Vano) connected
+2021.11.25  time  11:22:41 AM MSK: Number of clients: 1
+2021.11.25  time  11:22:45 AM MSK: Desk "Доска 1" created
+2021.11.25  time  11:22:45 AM MSK: Number of desks: 1
+2021.11.25  time  11:27:30 AM MSK: Client (name: Vano) is unavailable
+2021.11.25  time  11:27:30 AM MSK: Number of clients: 0
+2021.11.25  time  11:27:30 AM MSK: SERVER WAS CLOSED
+2021.11.25  time  11:28:23 AM MSK: SERVER has been created
+2021.11.25  time  11:28:23 AM MSK: SERVER PORT:50641
+2021.11.25  time  11:28:33 AM MSK: User fsdf was added
+2021.11.25  time  11:28:33 AM MSK: Client (name: fsdf) connected
+2021.11.25  time  11:28:33 AM MSK: Number of clients: 1
+2021.11.25  time  11:28:36 AM MSK: Desk "Доска 1" created
+2021.11.25  time  11:28:36 AM MSK: Number of desks: 1
+2021.11.25  time  11:30:02 AM MSK: Client (name: fsdf) is unavailable
+2021.11.25  time  11:30:02 AM MSK: Number of clients: 0
+2021.11.25  time  11:30:02 AM MSK: SERVER WAS CLOSED
+2021.11.25  time  11:30:54 AM MSK: SERVER has been created
+2021.11.25  time  11:30:55 AM MSK: SERVER PORT:50670
+2021.11.25  time  11:31:13 AM MSK: User Vano was added
+2021.11.25  time  11:31:13 AM MSK: Client (name: Vano) connected
+2021.11.25  time  11:31:13 AM MSK: Number of clients: 1
+2021.11.25  time  11:31:14 AM MSK: Desk "Доска 1" created
+2021.11.25  time  11:31:14 AM MSK: Number of desks: 1
+2021.11.25  time  11:34:45 AM MSK: Client (name: Vano) is unavailable
+2021.11.25  time  11:34:45 AM MSK: Number of clients: 0
+2021.11.25  time  11:34:45 AM MSK: SERVER WAS CLOSED
+2021.11.25  time  11:35:00 AM MSK: SERVER has been created
+2021.11.25  time  11:35:00 AM MSK: SERVER PORT:50714
+2021.11.25  time  11:35:09 AM MSK: User CANO was added
+2021.11.25  time  11:35:09 AM MSK: Client (name: CANO) connected
+2021.11.25  time  11:35:09 AM MSK: Number of clients: 1
+2021.11.25  time  11:35:10 AM MSK: Desk "Доска 1" created
+2021.11.25  time  11:35:10 AM MSK: Number of desks: 1
+2021.11.25  time  11:38:14 AM MSK: User Foa was added
+2021.11.25  time  11:38:14 AM MSK: Client (name: Foa) connected
+2021.11.25  time  11:38:14 AM MSK: Number of clients: 2
+2021.11.25  time  11:39:42 AM MSK: Client (name: CANO) is unavailable
+2021.11.25  time  11:39:42 AM MSK: Number of clients: 1
+2021.11.25  time  11:39:48 AM MSK: Client (name: Foa) is unavailable
+2021.11.25  time  11:39:48 AM MSK: Number of clients: 0
+2021.11.25  time  11:39:48 AM MSK: SERVER WAS CLOSED
+2021.11.25  time  11:53:38 AM MSK: SERVER has been created
+2021.11.25  time  11:53:38 AM MSK: SERVER PORT:62614
+2021.11.25  time  11:55:10 AM MSK: User Fd was added
+2021.11.25  time  11:55:10 AM MSK: Client (name: Fd) connected
+2021.11.25  time  11:55:10 AM MSK: Number of clients: 1
+2021.11.25  time  11:55:19 AM MSK: Client (name: Fd) is unavailable
+2021.11.25  time  11:55:19 AM MSK: Number of clients: 0
+2021.11.25  time  11:55:19 AM MSK: SERVER WAS CLOSED
+2021.11.25  time  11:58:34 AM MSK: SERVER has been created
+2021.11.25  time  11:58:34 AM MSK: SERVER PORT:62691
+2021.11.25  time  11:58:40 AM MSK: User Vano was added
+2021.11.25  time  11:58:40 AM MSK: Client (name: Vano) connected
+2021.11.25  time  11:58:40 AM MSK: Number of clients: 1
+2021.11.25  time  11:59:20 AM MSK: User fdfd was added
+2021.11.25  time  11:59:20 AM MSK: Client (name: fdfd) connected
+2021.11.25  time  11:59:20 AM MSK: Number of clients: 2
+2021.11.25  time  11:59:52 AM MSK: Desk "Доска 1" created
+2021.11.25  time  11:59:52 AM MSK: Number of desks: 1
+2021.11.25  time  12:02:07 PM MSK: User Fsf was added
+2021.11.25  time  12:02:07 PM MSK: Client (name: Fsf) connected
+2021.11.25  time  12:02:07 PM MSK: Number of clients: 3
+2021.11.25  time  12:03:34 PM MSK: Client (name: Vano) is unavailable
+2021.11.25  time  12:03:34 PM MSK: Number of clients: 2
+2021.11.25  time  12:03:34 PM MSK: ERROR: java.net.SocketException: Connection reset
+2021.11.25  time  12:03:38 PM MSK: Client (name: fdfd) is unavailable
+2021.11.25  time  12:03:38 PM MSK: Number of clients: 1
+2021.11.25  time  12:03:38 PM MSK: Desk "Доска 1" is not used and has been removed
+2021.11.25  time  12:03:38 PM MSK: Number of desks: 0
+2021.11.25  time  12:03:38 PM MSK: ERROR: java.net.SocketException: Connection reset
+2021.11.25  time  12:12:10 PM MSK: SERVER has been created
+2021.11.25  time  12:12:10 PM MSK: SERVER PORT:62951
+2021.11.25  time  12:12:44 PM MSK: User dfd was added
+2021.11.25  time  12:12:44 PM MSK: Client (name: dfd) connected
+2021.11.25  time  12:12:44 PM MSK: Number of clients: 1
+2021.11.25  time  12:12:53 PM MSK: Desk "Доска 1" created
+2021.11.25  time  12:12:53 PM MSK: Number of desks: 1
+2021.11.25  time  12:15:16 PM MSK: User fsfsww was added
+2021.11.25  time  12:15:16 PM MSK: Client (name: fsfsww) connected
+2021.11.25  time  12:15:16 PM MSK: Number of clients: 2
+2021.11.25  time  12:15:23 PM MSK: Client (name: fsfsww) is unavailable
+2021.11.25  time  12:15:23 PM MSK: Number of clients: 1
+2021.11.25  time  12:15:23 PM MSK: ERROR: java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because "this.boardName" is null
+2021.11.25  time  12:16:23 PM MSK: Client (name: dfd) is unavailable
+2021.11.25  time  12:16:23 PM MSK: Number of clients: 0
+2021.11.25  time  12:16:23 PM MSK: SERVER WAS CLOSED
+2021.11.25  time  12:16:41 PM MSK: SERVER has been created
+2021.11.25  time  12:16:41 PM MSK: SERVER PORT:63021
+2021.11.25  time  12:16:51 PM MSK: User fsfd was added
+2021.11.25  time  12:16:51 PM MSK: Client (name: fsfd) connected
+2021.11.25  time  12:16:51 PM MSK: Number of clients: 1
+2021.11.25  time  12:16:53 PM MSK: Desk "Доска 1" created
+2021.11.25  time  12:16:53 PM MSK: Number of desks: 1
+2021.11.25  time  12:17:20 PM MSK: User sfsf was added
+2021.11.25  time  12:17:20 PM MSK: Client (name: sfsf) connected
+2021.11.25  time  12:17:20 PM MSK: Number of clients: 2
+2021.11.25  time  12:17:26 PM MSK: Client (name: sfsf) is unavailable
+2021.11.25  time  12:17:26 PM MSK: Number of clients: 1
+2021.11.25  time  12:17:26 PM MSK: ERROR: java.lang.NullPointerException: Cannot invoke "String.equals(Object)" because "this.boardName" is null
+2021.11.25  time  12:20:20 PM MSK: SERVER has been created
+2021.11.25  time  12:20:20 PM MSK: SERVER PORT:63058
+2021.11.25  time  12:20:31 PM MSK: User fdgd was added
+2021.11.25  time  12:20:31 PM MSK: Client (name: fdgd) connected
+2021.11.25  time  12:20:31 PM MSK: Number of clients: 1
+2021.11.25  time  12:20:35 PM MSK: Desk "Доска 1" created
+2021.11.25  time  12:20:35 PM MSK: Number of desks: 1
+2021.11.25  time  12:20:52 PM MSK: User Fsdfdfd was added
+2021.11.25  time  12:20:52 PM MSK: Client (name: Fsdfdfd) connected
+2021.11.25  time  12:20:52 PM MSK: Number of clients: 2
+2021.11.25  time  12:30:54 PM MSK: User sdsfs was added
+2021.11.25  time  12:30:54 PM MSK: Client (name: sdsfs) connected
+2021.11.25  time  12:30:54 PM MSK: Number of clients: 3
+2021.11.25  time  12:31:17 PM MSK: Desk "Доска 4" created
+2021.11.25  time  12:31:17 PM MSK: Number of desks: 2
+2021.11.25  time  12:31:33 PM MSK: Desk "Доска 4" is not used and has been removed
+2021.11.25  time  12:31:33 PM MSK: Number of desks: 1
+2021.11.25  time  12:56:47 PM MSK: Client (name: sdsfs) is unavailable
+2021.11.25  time  12:56:47 PM MSK: Number of clients: 2
+2021.11.25  time  12:56:47 PM MSK: ERROR: java.net.SocketException: Connection reset
+2021.11.25  time  01:10:56 PM MSK: SERVER has been created
+2021.11.25  time  01:10:56 PM MSK: SERVER PORT:49402
+2021.11.25  time  01:45:41 PM MSK: SERVER has been created
+2021.11.25  time  01:45:41 PM MSK: SERVER PORT:64165
+2021.11.25  time  01:46:00 PM MSK: User Cano was added
+2021.11.25  time  01:46:00 PM MSK: Client (name: Cano) connected
+2021.11.25  time  01:46:00 PM MSK: Number of clients: 1
+2021.11.25  time  01:46:04 PM MSK: Desk "Доска 1" created
+2021.11.25  time  01:46:04 PM MSK: Number of desks: 1
+2021.11.25  time  01:46:15 PM MSK: Desk "Доска 2" created
+2021.11.25  time  01:46:15 PM MSK: Number of desks: 2
+2021.11.25  time  01:46:15 PM MSK: Desk "Доска 1" is not used and has been removed
+2021.11.25  time  01:46:15 PM MSK: Number of desks: 1
+2021.11.25  time  01:46:49 PM MSK: User sfsf was added
+2021.11.25  time  01:46:49 PM MSK: Client (name: sfsf) connected
+2021.11.25  time  01:46:49 PM MSK: Number of clients: 2
+2021.11.25  time  01:47:16 PM MSK: Desk "Доска 1" created
+2021.11.25  time  01:47:16 PM MSK: Number of desks: 2
+2021.11.25  time  01:47:31 PM MSK: Desk "Доска 1" is not used and has been removed
+2021.11.25  time  01:47:31 PM MSK: Number of desks: 1
+2021.11.25  time  01:51:46 PM MSK: User Csfe was added
+2021.11.25  time  01:51:46 PM MSK: Client (name: Csfe) connected
+2021.11.25  time  01:51:46 PM MSK: Number of clients: 3
+2021.11.25  time  01:51:51 PM MSK: Desk "Доска 1" created
+2021.11.25  time  01:51:51 PM MSK: Number of desks: 2
+2021.11.25  time  01:52:02 PM MSK: Desk "Доска 1" is not used and has been removed
+2021.11.25  time  01:52:02 PM MSK: Number of desks: 1
+2021.11.25  time  01:52:08 PM MSK: Desk "Доска 3" created
+2021.11.25  time  01:52:08 PM MSK: Number of desks: 2

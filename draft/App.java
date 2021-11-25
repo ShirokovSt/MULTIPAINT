@@ -21,7 +21,6 @@ public class App {
                     }
                 });
             } else {
-				System.out.println(args.length);
                 System.out.println("[тип(-S/-S)] [адрес сервера(опционально)] [порт сервера(опционально)]");
             }
         } else {

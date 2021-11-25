@@ -32,12 +32,15 @@ public class Client {
     public JPanel menu; // меню
     public JLabel existLabel; // доска существует
     public JLabel notFoundLabel; // доска не неайдена
+	public JLabel connectionLabel; // когда идёт присоединение к доске
+	public JLabel alreadyConnected; //если пытаешься подключиться к доске на которой ты находишься
     public BoardPanel boardPanel; // отображение доски
     public BufferedImage board = null; // доска
     public Graphics2D graphics;
     public Color mainColor;
     public int size = 10; // размер кисти
-	public String name;
+	public String name = null; //имя пользователя
+	private JTextField textField = null;
 	
 	//Переменные чата (граф. интерфейс)
 	public JFrame frameChat;
@@ -199,6 +202,11 @@ public class Client {
                         } else if (splitMessage[0].equals("CONNECT")) {
 							//Подключение к доске
                             if (splitMessage[1].equals("OK")) {
+								
+								connectionLabel = new JLabel("\u041f\u0440\u0438\u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u0435\u0020\u043a\u0020\u0434\u043e\u0441\u043a\u0435\u0020\"" + textField.getText() + "\"...");
+								connectionLabel.setBounds(20, 85, 300, 30);
+					
+								menu.add(connectionLabel);
                                 int[] rgbArray = new int[560000];
                                 for (int i = 0; i < rgbArray.length; i++) {
                                     message = readSocket.readLine();
@@ -209,7 +217,7 @@ public class Client {
                                 graphics = board.createGraphics();
                                 isConnected = true;
                                 frame.remove(menu);
-								// this.sleep(1000);
+								menu.remove(connectionLabel);
                                 frame.add(boardPanel);
 								frame.add(toolbar);
                                 frame.repaint();
@@ -218,7 +226,10 @@ public class Client {
 								frame.remove(toolbar);
 								frame.add(menuButton);
                                 frame.repaint();
-                            }
+                            } else if (splitMessage[1].equals("THIS")) {
+								menu.add(alreadyConnected);
+								frame.repaint();
+							}	
                         } else {
 							//Рисование на доске
 							if(splitMessage[0].equals("MESSAGE"))
@@ -246,8 +257,6 @@ public class Client {
     }
 	
     public Client(String serverHost, int serverPort) {
-        
-		//Сеть
         try {
             try {
                 this.serverHost = serverHost;
@@ -258,8 +267,8 @@ public class Client {
 				BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
 				System.out.println("Get name, example: @name Vanya\nYour name: ");
 				
-				String nameClient = stdIn.readLine();				
-				writeSocket.write(nameClient + "\n");
+				name = stdIn.readLine();				
+				writeSocket.write(name + "\n");
 				writeSocket.flush();
 				String fromServer = readSocket.readLine();
 				name = fromServer;
@@ -280,7 +289,7 @@ public class Client {
 		frameChat = new JFrame("Chat");
 		frameChat.setSize(400, 600);
 		frameChat.setResizable(false); // нельзя менять размер окна
-        frameChat.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // закрытие программы
+        frameChat.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); //скрыть кадр, но сохранить приложение запущено.
 		frameChat.setLocationRelativeTo(null);
         frameChat.setLayout(null);
         frameChat.setVisible(true);
@@ -339,6 +348,7 @@ public class Client {
 					sendChat.doClick();
 				}
 		});
+		frameChat.setVisible(false);//изначально чат не виден
 		
         //Графика (окно рисования)
         frame = new JFrame("MultiPaint");
@@ -362,6 +372,12 @@ public class Client {
         menu.setLayout(null);
         frame.add(menu);
 		
+		//Текстовое поле
+        textField = new JTextField();
+        textField.setBounds(20, 45, 100, 30);
+        textField.setText("\u0414\u043e\u0441\u043a\u0430 \u0031"); //доска 1
+        menu.add(textField);
+		
         //Доска с таким именем уже существует UTF-16
         existLabel = new JLabel("\u0414\u043e\u0441\u043a\u0430 \u0441 \u0442\u0430\u043a\u0438\u043c \u0438\u043c\u0435\u043d\u0435\u043c \u0443\u0436\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442");
         existLabel.setBounds(20, 85, 300, 30);
@@ -369,7 +385,11 @@ public class Client {
         //Доска с таким именем не существует UTF-16
         notFoundLabel = new JLabel("\u0414\u043e\u0441\u043a\u0430 \u0441 \u0442\u0430\u043a\u0438\u043c \u0438\u043c\u0435\u043d\u0435\u043c \u043d\u0435 \u0441\u0443\u0449\u0435\u0441\u0442\u0432\u0443\u0435\u0442");
         notFoundLabel.setBounds(20, 85, 300, 30);
-
+		
+		//Вы уже подключены к этой доске
+		alreadyConnected = new JLabel("\u0412\u044b\u0020\u0443\u0436\u0435\u0020\u043f\u043e\u0434\u043a\u043b\u044e\u0447\u0435\u043d\u044b\u0020\u043a\u0020\u044d\u0442\u043e\u0439\u0020\u0434\u043e\u0441\u043a\u0435");
+		alreadyConnected.setBounds(20, 85, 300, 30);
+	
         //Приглашение
         //Введите имя доски UTF-16
         JLabel inviteLabel = new JLabel( name + ", \u0432\u0432\u0435\u0434\u0438\u0442\u0435 \u0438\u043c\u044f \u0434\u043e\u0441\u043a\u0438");
@@ -466,7 +486,7 @@ public class Client {
                 mainColor = Color.white;
 				Toolkit toolkit = Toolkit.getDefaultToolkit();
 				Image image = (new ImageIcon(this.getClass().getClassLoader().getResource("Erasor.png"))).getImage();
-				Point hotSpot = new Point(10,30);
+				Point hotSpot = new Point(10, 30);
 				Cursor cursor1 = toolkit.createCustomCursor(image, hotSpot, "Erasor");
 				boardPanel.setCursor(cursor1);
 				if (size < 10) {
@@ -651,7 +671,7 @@ public class Client {
 					}
 					Toolkit toolkit = Toolkit.getDefaultToolkit();
 					Image image = (new ImageIcon(this.getClass().getClassLoader().getResource("Pencil.png"))).getImage();
-					Point hotSpot = new Point(0,30);
+					Point hotSpot = new Point(0, 30);
 					Cursor cursor2 = toolkit.createCustomCursor(image, hotSpot, "Pencil");
 					boardPanel.setCursor(cursor2);
 					if (size == 10)
@@ -686,7 +706,7 @@ public class Client {
 					//mainColor = Color.magenta;
 					Toolkit toolkit = Toolkit.getDefaultToolkit();
 					Image image = (new ImageIcon(this.getClass().getClassLoader().getResource("Brush.png"))).getImage();
-					Point hotSpot = new Point(30,0);
+					Point hotSpot = new Point(30, 0);
 					Cursor cursor3 = toolkit.createCustomCursor(image, hotSpot, "Brush");
 					boardPanel.setCursor(cursor3);
 					if (size < 10) {
@@ -730,11 +750,6 @@ public class Client {
         });
 		frame.add(menuButton);
 		
-        //Текстовое поле
-        JTextField textField = new JTextField();
-        textField.setBounds(20, 45, 100, 30);
-        textField.setText("\u0414\u043e\u0441\u043a\u0430 \u0031"); //доска 1
-        menu.add(textField);
         //Создать доску (UTF-16)
         JButton createBoard = new JButton("\u0421\u043e\u0437\u0434\u0430\u0442\u044c \u0434\u043e\u0441\u043a\u0443");
         createBoard.setBounds(125, 40, 210, 40); // размещение
@@ -758,7 +773,10 @@ public class Client {
                     menu.remove(notFoundLabel);
                     frame.repaint();
                 }
-
+				if (menu.isAncestorOf(alreadyConnected)) {
+                    menu.remove(alreadyConnected);
+                    frame.repaint();
+                }
                 try {
                     try {
                         writeSocket.write("CREATE " + nameBoard + "\n");
@@ -777,7 +795,24 @@ public class Client {
         });
         menu.add(createBoard);
 
-        //Подключиться к доске
+		//Открыть/скрыть чат
+		//String string = new String("\u0427\u0430\u0442");//"Чат"
+        JButton chatButton = new JButton("\u0427\u0430\u0442");
+        chatButton.setBounds(335, 80, 210, 40); // размещение
+        chatButton.setBorderPainted(true); // рисовать рамку
+        chatButton.setBackground(Color.lightGray); // цвет фона (убирает градиент при наведении)
+        chatButton.setOpaque(true); // не прозрачность
+        chatButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+				if(frameChat.isVisible())//если чат виден
+					frameChat.setVisible(false);
+				else
+					frameChat.setVisible(true);
+            }
+        });
+        menu.add(chatButton);
+		
+		//Подключиться к доске
 		//Cтрока "Присоединиться к доске" в UTF-16 для нормального вывода
 		String string = new String("\u041f\u0440\u0438\u0441\u043e\u0435\u0434\u0438\u043d\u0438\u0442\u044c\u0441\u044f \u043a \u0434\u043e\u0441\u043a\u0435");
         JButton joinBoard = new JButton(string);
@@ -804,7 +839,11 @@ public class Client {
                     menu.remove(notFoundLabel);
                     frame.repaint();
                 }
-
+				if (menu.isAncestorOf(alreadyConnected)) {
+                    menu.remove(alreadyConnected);
+                    frame.repaint();
+                }
+				
                 //Подключение
                 try {
                     try {
@@ -827,7 +866,7 @@ public class Client {
 		//сохранение доски
 		JButton save = new JButton("\u0421\u043e\u0445\u0440\u0430\u043d\u0438\u0442\u044c \u0434\u043e\u0441\u043a\u0443");
 		save.addActionListener(e -> save(boardPanel));
-		save.setBounds(535, 40, 210, 40); // размещение
+		save.setBounds(545, 40, 210, 40); // размещение
         save.setBorderPainted(true); // рисовать рамку
         save.setBackground(Color.lightGray); // цвет фона (убирает градиент при наведении)
         save.setOpaque(true); // не_прозрачность
@@ -839,7 +878,7 @@ public class Client {
                 try {
                     try {
 						if(mainColor != null) {
-							String message = mainColor.getRGB() + " " + (e.getX() - size / 2) + " " + (e.getY() - size / 2)
+							String message = mainColor.getRGB() + " " + (e.getX()- size / 2) + " " + (e.getY()- size / 2)
 									+ " " + size;
 							writeSocket.write(message + "\n");
 							writeSocket.flush();
