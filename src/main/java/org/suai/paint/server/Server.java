@@ -295,8 +295,8 @@ public class Server {
 							}
 							
 							for (String to : usersForChat.keySet()) {
-								ClientThread toUser = usersForChat.get(to);
-								toUser.writeSocket.write("MESSAGE @SERVER: User @" + name + " is unavailable\n");
+								ClientThread toUser = usersForChat.get(to);//информация всем что пользователь вышел
+								toUser.writeSocket.write("MESSAGE @SERVER: \u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c @" + name + " \u043f\u043e\u043a\u0438\u043d\u0443\u043b \u0441\u0435\u0440\u0432\u0435\u0440\n");
 								toUser.writeSocket.flush();
 							}
                         }

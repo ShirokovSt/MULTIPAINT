@@ -220,9 +220,9 @@ public class Client {
                 clientSocket = new Socket(serverHost, serverPort);
                 readSocket = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 writeSocket = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
-				BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-				System.out.println("Get name, example: \"@name Vanya\" or just \"Vanya\"\nYour name: ");
-				name = stdIn.readLine();				
+				BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in, "cp866"));
+				System.out.println("Введите имя, например: \"@name Иван\" или просто \"Иван\"\nВаше имя: ");
+				name = stdIn.readLine();
 				writeSocket.write(name + "\n");
 				writeSocket.flush();
 				String fromServer = readSocket.readLine();
@@ -246,6 +246,7 @@ public class Client {
         frameChat.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE); //скрыть кадр, но сохранить приложение запущено.
 		frameChat.setLocationRelativeTo(null);
         frameChat.setLayout(null);
+		frameChat.setIconImage((new ImageIcon(this.getClass().getClassLoader().getResource("chatIcon.png"))).getImage());
         frameChat.setVisible(true);
 		
 		//Панель для ввода данных
@@ -306,12 +307,13 @@ public class Client {
 		
 		//Графический интерфейс paint
         //Графика (окно рисования)
-        frame = new JFrame("MultiPaint");
+        frame = new JFrame("\u041c\u043d\u043e\u0433\u043e\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u0441\u043a\u0438\u0439 \u0050\u0061\u0069\u006e\u0074");
         frame.setSize(900, 700); // размер окна
         frame.setResizable(false); // нельзя менять размер окна 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // закрытие программы
 		frame.setLocationRelativeTo(null);
         frame.setLayout(null);
+		frame.setIconImage((new ImageIcon(this.getClass().getClassLoader().getResource("mainIcon.png"))).getImage());
         frame.setVisible(true);
 
         //Панель рисования
@@ -359,9 +361,10 @@ public class Client {
         toolbar.setBackground(mainColor); // устанавливаем цвет панели
 		
 		//Палитра 
-		JFrame paletteFrame = new JFrame();
+		JFrame paletteFrame = new JFrame("\u041f\u0430\u043b\u0438\u0442\u0440\u0430");
 		paletteFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		paletteFrame.setSize(500, 400);
+		paletteFrame.setIconImage((new ImageIcon(this.getClass().getClassLoader().getResource("paletteIcon.png"))).getImage());
 		paletteFrame.setVisible(false);
 		
 		JColorChooser paletteChooser = new JColorChooser();
@@ -956,15 +959,21 @@ public class Client {
 	private void save(JPanel panel) {
 		BufferedImage img = new BufferedImage(panel.getWidth(), panel.getHeight(), BufferedImage.TYPE_INT_RGB);
 		panel.print(img.getGraphics());
+		UIManager.put("FileChooser.saveButtonText", "Сохранить");
+        UIManager.put("FileChooser.cancelButtonText", "Отмена");
+        UIManager.put("FileChooser.fileNameLabelText", "Наименование файла");
+        UIManager.put("FileChooser.filesOfTypeLabelText", "Типы файлов");
+        UIManager.put("FileChooser.lookInLabelText", "Директория");
+        UIManager.put("FileChooser.saveInLabelText", "Сохранить в директории");
+        UIManager.put("FileChooser.folderNameLabelText", "Путь директории");
+		UIManager.put("FileChooser.openButtonText", "Открыть");
 		
 		JFileChooser chooser = new JFileChooser();
-		JLabel imageLabel = new JLabel();
-		imageLabel.setIcon(new ImageIcon(img));
 		
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("*.jpeg","*.*");
 		chooser.setFileFilter(filter);
 		
-		int result = chooser.showSaveDialog(imageLabel);
+		int result = chooser.showDialog(frame, "Сохранить");
 		if(result == JFileChooser.APPROVE_OPTION) {
 			File file = chooser.getSelectedFile();
 			String fname = file.getAbsolutePath();
