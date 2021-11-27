@@ -98,11 +98,22 @@ public class Server {
                         String message = readSocket.readLine();
 						if(message == null)
 							continue;
+						if (message.contains("GIVE BOARDS")) {
+                            ArrayList<String> names = new ArrayList<>(boards.keySet());
+                            StringBuilder boardNames = new StringBuilder("NAMES:");
+                            for (String name : names) {
+                                boardNames.append(name).append(";");
+                            }
+                            writeSocket.write(boardNames + "\n");
+                            writeSocket.flush();
+                            continue;
+                        }
+						
                         String[] splitMessage = message.split(" ", 2);
 						
 						if(splitMessage[0].equals("MESSAGE")) { //MESSAGE mess //MESSAGE @senduser Ivan mess
 							synchronized (usersForChat) {
-								if(splitMessage[1].startsWith("@quit")) {
+								if(splitMessage[1].equals("@quit")) {
 									writeSocket.write("MESSAGE @quit");
 									writeSocket.flush();
 									break;
@@ -277,7 +288,7 @@ public class Server {
                         synchronized (consoleSynch) {
 							//log
 							logger.toLog("Client (name: " + name + ") is unavailable");
-                            System.out.println("Client is unavailable");
+                            System.out.println("Client " + name + " is unavailable");
 							//log
 							logger.toLog("Number of clients: " + usersForChat.size());
                             System.out.println("Number of clients: " + usersForChat.size());
