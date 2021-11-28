@@ -1,5 +1,6 @@
 package org.suai.paint;
 
+import java.awt.*;
 import javax.swing.*;
 
 import org.suai.paint.client.Client;
@@ -12,19 +13,33 @@ public class App {
             if (args[0].toUpperCase().equals("-S")) {
                 System.out.println("SERVER");
                 Server server = new Server(false);
-            } else if (args[0].toUpperCase().equals("-C") && args.length == 3) {
+            } else if (args[0].toUpperCase().equals("-C")) {
                 // 2-ой и 3-й - адрес и порт сервера, к которому будет подключаться клиент
-                System.out.println("CLIENT");
+				UIManager.put("OptionPane.cancelButtonText", "Отмена");
+				UIManager.put("OptionPane.okButtonText", "Окей");
+				
+				JPanel ipPortPanel = new JPanel();
+				ipPortPanel.setLayout(new GridLayout(2, 2, 5, 12));
+				
+				JTextField text1 = new JTextField(10);
+				JTextField text2 = new JTextField(10);
+				
+				ipPortPanel.add(new JLabel("Введите ip: "));
+				ipPortPanel.add(text1);
+				ipPortPanel.add(new JLabel("Введите порт: "));
+				ipPortPanel.add(text2);
+				JOptionPane.showMessageDialog(null, ipPortPanel, "Конфигурация", JOptionPane.PLAIN_MESSAGE);
+				
                 SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        Client client = new Client(args[1], Integer.parseInt(args[2]));
+                        Client client = new Client(text1.getText(), Integer.parseInt(text2.getText()));
                     }
                 });
             } else {
-                System.out.println("[тип(-S/-S)] [адрес сервера(опционально)] [порт сервера(опционально)]");
+                System.out.println("(-S/-С)");
             }
         } else {
-            System.out.println("[тип(-S/-C)] [адрес сервера(опционально)] [порт сервера(опционально)]");
+            System.out.println("(-S/-C)");
         }
     }
 }

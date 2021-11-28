@@ -340,3 +340,61 @@
 2021.11.28  time  11:38:06 PM MSK: Client (name: Dftz) is unavailable
 2021.11.28  time  11:38:06 PM MSK: Number of clients: 0
 2021.11.28  time  11:38:06 PM MSK: SERVER WAS CLOSED
+2021.11.29  time  12:16:31 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:16:31 AM MSK: TEST SERVER PORT:59172
+2021.11.29  time  12:16:31 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:16:31 AM MSK: TEST SERVER PORT:59173
+2021.11.29  time  12:16:31 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:16:31 AM MSK: TEST SERVER PORT:59174
+2021.11.29  time  12:16:31 AM MSK: Desk "TestBoard" is not used and has been removed
+2021.11.29  time  12:16:31 AM MSK: Number of desks: 0
+2021.11.29  time  12:16:31 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:16:31 AM MSK: TEST SERVER PORT:59175
+2021.11.29  time  12:16:31 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:16:31 AM MSK: TEST SERVER PORT:59176
+2021.11.29  time  12:16:31 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:16:31 AM MSK: TEST SERVER PORT:59177
+2021.11.29  time  12:16:31 AM MSK: TEST LOG
+2021.11.29  time  12:16:40 AM MSK: SERVER has been created
+2021.11.29  time  12:16:40 AM MSK: SERVER PORT:59178
+2021.11.29  time  12:19:27 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:19:27 AM MSK: TEST SERVER PORT:59183
+2021.11.29  time  12:19:27 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:19:27 AM MSK: TEST SERVER PORT:59184
+2021.11.29  time  12:19:27 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:19:27 AM MSK: TEST SERVER PORT:59185
+2021.11.29  time  12:19:27 AM MSK: Desk "TestBoard" is not used and has been removed
+2021.11.29  time  12:19:27 AM MSK: Number of desks: 0
+2021.11.29  time  12:19:27 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:19:27 AM MSK: TEST SERVER PORT:59186
+2021.11.29  time  12:19:27 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:19:27 AM MSK: TEST SERVER PORT:59187
+2021.11.29  time  12:19:27 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:19:27 AM MSK: TEST SERVER PORT:59188
+2021.11.29  time  12:19:27 AM MSK: TEST LOG
+2021.11.29  time  12:22:14 AM MSK: User Ваня was added
+2021.11.29  time  12:22:14 AM MSK: Client (name: Ваня) connected
+2021.11.29  time  12:22:14 AM MSK: Number of clients: 1
+2021.11.29  time  12:22:32 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:22:32 AM MSK: TEST SERVER PORT:52097
+2021.11.29  time  12:22:32 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:22:32 AM MSK: TEST SERVER PORT:52098
+2021.11.29  time  12:22:32 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:22:32 AM MSK: TEST SERVER PORT:52099
+2021.11.29  time  12:22:32 AM MSK: Desk "TestBoard" is not used and has been removed
+2021.11.29  time  12:22:32 AM MSK: Number of desks: 0
+2021.11.29  time  12:22:32 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:22:32 AM MSK: TEST SERVER PORT:52100
+2021.11.29  time  12:22:32 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:22:32 AM MSK: TEST SERVER PORT:52101
+2021.11.29  time  12:22:32 AM MSK: TEST SERVER has been created
+2021.11.29  time  12:22:32 AM MSK: TEST SERVER PORT:52102
+2021.11.29  time  12:22:32 AM MSK: TEST LOG
+2021.11.29  time  12:23:04 AM MSK: User ВАня was added
+2021.11.29  time  12:23:04 AM MSK: Client (name: ВАня) connected
+2021.11.29  time  12:23:04 AM MSK: Number of clients: 2
+2021.11.29  time  12:23:15 AM MSK: Client (name: Ваня) is unavailable
+2021.11.29  time  12:23:15 AM MSK: Number of clients: 1
+2021.11.29  time  12:23:19 AM MSK: Client (name: ВАня) is unavailable
+2021.11.29  time  12:23:19 AM MSK: Number of clients: 0
+2021.11.29  time  12:23:19 AM MSK: SERVER WAS CLOSED
