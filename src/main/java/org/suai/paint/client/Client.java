@@ -27,7 +27,6 @@ public class Client {
 	public boolean flag1 = false;
 	public boolean flag2 = false;
 	public boolean flag3 = false;
-	public boolean flag4 = false;
     public JFrame frame;
     public JToolBar toolbar; // кнопки
 	public JButton menuButton;
@@ -35,7 +34,6 @@ public class Client {
     public JLabel existLabel; // доска существует
     public JLabel notFoundLabel; // доска не неайдена
 	public JLabel connectionLabel; // когда идёт присоединение к доске
-	public JLabel connectionLabel1;
 	public JLabel alreadyConnected; //если пытаешься подключиться к доске на которой ты находишься
 	public JLabel inviteLabel = null;//приглашение
     public BoardPanel boardPanel; // отображение доски
@@ -118,7 +116,7 @@ public class Client {
                         message = readSocket.readLine();
 						if(message == null)
 							continue;
-						 if (message.contains("NAMES:")) {
+						 if (message.startsWith("NAMES:")) {
                             nameOfBoards.clear();
                             message = message.replaceFirst("NAMES:", "");
                             splitMessage = message.split(";");
@@ -173,8 +171,7 @@ public class Client {
                             if (splitMessage[1].equals("OK")) {
 								connectionLabel = new JLabel("\u041f\u0440\u0438\u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u0435\u0020\u043a\u0020\u0434\u043e\u0441\u043a\u0435\u0020\"" + textField.getText() + "\"...");
 								connectionLabel.setBounds(20, 85, 300, 30);
-								if (!flag4) menu.add(connectionLabel);
-								else menu.add(connectionLabel1);
+								menu.add(connectionLabel);
                                 int[] rgbArray = new int[560000];
                                 for (int i = 0; i < rgbArray.length; i++) {
                                     message = readSocket.readLine();
@@ -185,11 +182,7 @@ public class Client {
                                 graphics = board.createGraphics();
                                 isConnected = true;
                                 frame.remove(menu);
-								if (!flag4) menu.remove(connectionLabel);
-								else { 
-									menu.remove(connectionLabel1);
-									flag4 = false;
-								}
+								menu.remove(connectionLabel);
 								boardsFrame.setVisible(false);
                                 frame.add(boardPanel);
 								frame.add(toolbar);
@@ -917,19 +910,19 @@ public class Client {
 							writeSocket.flush();
 							//граф. интерфейс выбора досок
 							boardsFrame = new JFrame("Список досок");
-							boardsFrame.setLayout(new FlowLayout());
-							boardsFrame.setSize(300, 400);
+							//boardsFrame.setLayout(new FlowLayout());
+							boardsFrame.setSize(300, 100);
 							boardsFrame.setResizable(false);
 							boardsFrame.setLocationRelativeTo(null);
 							boardsFrame.setIconImage((new ImageIcon(this.getClass().getClassLoader().getResource("boardIcon.png"))).getImage());
 							boardsFrame.setVisible(true);
 							
-							//
+							//для скролинга
 							JPanel boards = new JPanel();
-							boards.setBounds(10, 10, 290, 390);
+							boards.setBounds(10, 10, 290, 90);
 							
-							JScrollPane scrollBoards = new JScrollPane(boards, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-							scrollBoards.setSize(290, 390);
+							JScrollPane scrollBoards = new JScrollPane(boards, JScrollPane.VERTICAL_SCROLLBAR_NEVER, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+							scrollBoards.setSize(290, 90);
 							scrollBoards.setLocation(10, 10);      
 							boardsFrame.add(scrollBoards);
 		
@@ -940,7 +933,6 @@ public class Client {
 									int finalI = i;
 									button.addActionListener(new ActionListener() {
 										public void actionPerformed(ActionEvent event) {
-											flag4 = true;
 											//Удаление предупреждений
 											if (menu.isAncestorOf(existLabel)) {
 												menu.remove(existLabel);
@@ -956,10 +948,9 @@ public class Client {
 											}
 											try {
 												try {
+													textField.setText(nameOfBoards.get(finalI));
 													writeSocket.write("CONNECT " + nameOfBoards.get(finalI) + "\n");
 													writeSocket.flush();
-													connectionLabel1 = new JLabel("\u041f\u0440\u0438\u0441\u043e\u0435\u0434\u0438\u043d\u0435\u043d\u0438\u0435\u0020\u043a\u0020\u0434\u043e\u0441\u043a\u0435\u0020\"" + nameOfBoards.get(finalI) + "\"...");
-													connectionLabel1.setBounds(20, 85, 300, 30);
 													frame.add(menuButton);
 													frame.repaint();
 												} catch (IOException exception) {
@@ -972,7 +963,7 @@ public class Client {
 											}
 										}
 									});
-									boards.add(button);
+									boards.add(button, BorderLayout.SOUTH);
 								}
 							}
 						} catch (IOException exception) {

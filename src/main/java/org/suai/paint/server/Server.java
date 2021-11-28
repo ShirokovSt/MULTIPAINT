@@ -81,7 +81,7 @@ public class Server {
 					if(to.equals(name))
 						continue;
 					 try {
-						toUser.writeSocket.write("MESSAGE @SERVER: The user " + name + " has been added to the chat\n");
+						toUser.writeSocket.write("MESSAGE @SERVER: Пользователь @" + name + " был добавлен в чат\n");
 						toUser.writeSocket.flush();
 					 } catch (Exception err) {
 						synchronized (consoleSynch) {
@@ -98,7 +98,7 @@ public class Server {
                         String message = readSocket.readLine();
 						if(message == null)
 							continue;
-						if (message.contains("GIVE BOARDS")) {
+						if (message.startsWith("GIVE BOARDS")) {
                             ArrayList<String> names = new ArrayList<>(boards.keySet());
                             StringBuilder boardNames = new StringBuilder("NAMES:");
                             for (String name : names) {
