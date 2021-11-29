@@ -895,7 +895,7 @@ public class Client {
 		JButton getBoardlist = new JButton("Список досок");
 		getBoardlist.setBounds(545, 80, 210, 40); // размещение
         getBoardlist.setBorderPainted(true); // рисовать рамку
-        getBoardlist.setBackground(Color.red); // цвет фона (убирает градиент при наведении)
+        getBoardlist.setBackground(Color.lightGray); // цвет фона (убирает градиент при наведении)
         getBoardlist.setOpaque(true); // не прозрачность
         getBoardlist.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
@@ -931,7 +931,6 @@ public class Client {
 							for (int i = 0; i < nameOfBoards.size(); i++) {
 								if (!nameOfBoards.get(i).equals("")) {
 									JButton button = new JButton(nameOfBoards.get(i));
-									// button.setBounds(200, 40 * i, 200, 40);
 									int finalI = i;
 									button.addActionListener(new ActionListener() {
 										public void actionPerformed(ActionEvent event) {
