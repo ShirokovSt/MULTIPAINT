@@ -44,7 +44,7 @@ public class Client {
 	public String name = null; //имя пользователя
 	private JTextField textField = null;
 	private final ArrayList<String> nameOfBoards = new ArrayList<>();
-	JFrame boardsFrame;
+	private JFrame boardsFrame; //список досок
 	
 	//Переменные чата (граф. интерфейс)
 	public JFrame frameChat;
@@ -183,7 +183,8 @@ public class Client {
                                 isConnected = true;
                                 frame.remove(menu);
 								menu.remove(connectionLabel);
-								boardsFrame.setVisible(false);
+								if(boardsFrame != null)
+									boardsFrame.setVisible(false);
                                 frame.add(boardPanel);
 								frame.add(toolbar);
                                 frame.repaint();
@@ -800,7 +801,8 @@ public class Client {
                 if (isConnected) {
                     if (frame.isAncestorOf(menu)) {
                         frame.remove(menu);
-						boardsFrame.setVisible(false);
+						if(boardsFrame != null)
+							boardsFrame.setVisible(false);
                         frame.add(boardPanel);
 						frame.add(toolbar);
                         frame.repaint();
