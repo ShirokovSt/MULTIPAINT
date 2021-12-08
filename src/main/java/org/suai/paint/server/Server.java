@@ -100,6 +100,7 @@ public class Server {
 							continue;
 						if (message.startsWith("GIVE BOARDS")) {
                             ArrayList<String> names = new ArrayList<>(boards.keySet());
+							Collections.sort(names);
                             StringBuilder boardNames = new StringBuilder("NAMES:");
                             for (String name : names) {
                                 boardNames.append(name).append(";");
